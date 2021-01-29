@@ -9,6 +9,11 @@ namespace Claire_Musicplayer.Services
     {
 
         private readonly WaveOutEvent _outputDevice;
+        public int Volume 
+        {
+            get => (int)Math.Round((decimal)_outputDevice.Volume * 100);
+            set { _outputDevice.Volume = (float)value / 100; }
+        }
 
         public AudioHandler()
         {
@@ -19,9 +24,19 @@ namespace Claire_Musicplayer.Services
         {
             if(_outputDevice.PlaybackState == PlaybackState.Playing)
                 Stop();
+            if(_outputDevice.PlaybackState == PlaybackState.Paused)
+            {
+                _outputDevice.Play();
+                return;
+            }
             var audioFile = new AudioFileReader("C:\\Users\\L0um15\\Music\\SpotiSharp\\Metal\\DED - Hate Me.mp3");
             _outputDevice.Init(new AutoDisposableFileReader(audioFile));
             _outputDevice.Play();
+        }
+
+        public void Pause()
+        {
+            _outputDevice.Pause();
         }
 
         public void Stop()

@@ -6,27 +6,28 @@ using System.Text;
 
 namespace Claire_Musicplayer.Commands
 {
-    public class Test : ICommander
+    public class PlayCommand : ICommander
     {
         private readonly AudioHandler _audioHandler;
 
-        public Test(AudioHandler audioHandler)
+        public PlayCommand(AudioHandler audioHandler)
         {
             _audioHandler = audioHandler;
         }
         public void Execute(string[] args)
         {
             _audioHandler.Play();
+            MessageExtensions.WriteLine("Playing");
         }
 
         public string Help()
         {
-            return "simple test";
+            return "Play's track";
         }
 
         public string Invoke()
         {
-            return "test";
+            return "play";
         }
     }
 }

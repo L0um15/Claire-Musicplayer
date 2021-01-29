@@ -15,7 +15,9 @@ namespace Claire_Musicplayer
 
         public CommandHandler(AudioHandler audioHandler)
         {
-            AddCommand(new Test(audioHandler));
+            AddCommand(new PlayCommand(audioHandler));
+            AddCommand(new PauseCommand(audioHandler));
+            AddCommand(new VolumeCommand(audioHandler));
         }
 
         public void AddCommand(ICommander command)
