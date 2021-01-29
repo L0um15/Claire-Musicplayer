@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Claire_Musicplayer.Services;
+using System;
 
 namespace Claire_Musicplayer
 {
@@ -7,10 +8,12 @@ namespace Claire_Musicplayer
         public static void Main(string[] args)
         {
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
-            CommandHandler commandHandler = new CommandHandler();
+            AudioHandler audioHandler = new AudioHandler();
+            CommandHandler commandHandler = new CommandHandler(audioHandler);
             while (true)
             {
                 string input = MessageExtensions.ReadLine();
+                MessageExtensions.Refresh();
                 commandHandler.Parse(input);
             }
         }

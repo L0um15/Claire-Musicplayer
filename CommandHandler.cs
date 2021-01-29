@@ -1,5 +1,6 @@
 ﻿using Claire_Musicplayer.Commands;
 using Claire_Musicplayer.Interfaces;
+using Claire_Musicplayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace Claire_Musicplayer
         private static readonly Dictionary<string, ICommander> _commands = new Dictionary<string, ICommander>();
 
 
-        public CommandHandler()
+        public CommandHandler(AudioHandler audioHandler)
         {
-            AddCommand(new Test());
+            AddCommand(new Test(audioHandler));
         }
 
         public void AddCommand(ICommander command)

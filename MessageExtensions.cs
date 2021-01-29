@@ -49,5 +49,13 @@ namespace Claire_Musicplayer
 
             return input;
         }
+        public static void Refresh()
+        {
+            Console.Clear();
+            for (int i = 0; i < _outputHistory.Count; i++)
+            {
+                Console.WriteLine(_outputHistory[i]);
+            }
+        }
     }
 }
