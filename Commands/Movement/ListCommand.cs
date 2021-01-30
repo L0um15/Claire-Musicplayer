@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands
+namespace Claire_Musicplayer.Commands.Movement
 {
     public class ListCommand : ICommander
     {

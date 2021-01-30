@@ -1,5 +1,5 @@
-﻿using Claire_Musicplayer.Commands;
-using Claire_Musicplayer.Commands.Audio;
+﻿using Claire_Musicplayer.Commands.Audio;
+using Claire_Musicplayer.Commands.Movement;
 using Claire_Musicplayer.Interfaces;
 using Claire_Musicplayer.Services;
 using System;
@@ -20,6 +20,7 @@ namespace Claire_Musicplayer
             AddCommand(new StopCommand(audioHandler));
             AddCommand(new VolumeCommand(audioHandler));
             AddCommand(new ListCommand());
+            AddCommand(new ChangeDirCommand());
         }
 
         public void AddCommand(ICommander command)
