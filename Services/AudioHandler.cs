@@ -9,6 +9,11 @@ namespace Claire_Musicplayer.Services
     {
 
         private readonly WaveOutEvent _outputDevice;
+
+        /// <summary>
+        /// Track path location
+        /// </summary>
+        public string CurrentTrack { get; private set; }
         public int Volume 
         {
             get => (int)Math.Round((decimal)_outputDevice.Volume * 100);
@@ -31,6 +36,7 @@ namespace Claire_Musicplayer.Services
             }
             if (input == null) return;
             var audioFile = new AudioFileReader(input);
+            CurrentTrack = input;
             _outputDevice.Init(new AutoDisposableFileReader(audioFile));
             _outputDevice.Play();
         }
@@ -43,6 +49,7 @@ namespace Claire_Musicplayer.Services
         public void Stop()
         {
             _outputDevice.Stop();
+            CurrentTrack = null;
         }
 
         public void Dispose()
