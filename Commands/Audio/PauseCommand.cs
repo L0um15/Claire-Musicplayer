@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands
+namespace Claire_Musicplayer.Commands.Audio
 {
     public class PauseCommand : ICommander
     {

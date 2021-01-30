@@ -4,30 +4,32 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands
+namespace Claire_Musicplayer.Commands.Audio
 {
-    public class PlayCommand : ICommander
+    public class StopCommand : ICommander
     {
+
         private readonly AudioHandler _audioHandler;
 
-        public PlayCommand(AudioHandler audioHandler)
+        public StopCommand(AudioHandler audioHandler)
         {
             _audioHandler = audioHandler;
         }
+
         public void Execute(string[] args)
         {
-            _audioHandler.Play();
-            MessageExtensions.WriteLine("Playing");
+            _audioHandler.Stop();
+            MessageExtensions.WriteLine("Stopped!");
         }
 
         public string Help()
         {
-            return "Play's track";
+            return "Stops playback";
         }
 
         public string Invoke()
         {
-            return "play";
+            return "stop";
         }
     }
 }
