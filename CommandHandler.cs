@@ -19,7 +19,7 @@ namespace Claire_Musicplayer
             AddCommand(new PauseCommand(audioHandler));
             AddCommand(new StopCommand(audioHandler));
             AddCommand(new VolumeCommand(audioHandler));
-            AddCommand(new PaginateTest());
+            AddCommand(new ListCommand());
         }
 
         public void AddCommand(ICommander command)
