@@ -2,6 +2,8 @@
 using Claire_Musicplayer.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Claire_Musicplayer.Commands.Audio
@@ -16,8 +18,22 @@ namespace Claire_Musicplayer.Commands.Audio
         }
         public void Execute(string[] args)
         {
-            _audioHandler.Play();
-            MessageExtensions.WriteLine("Playing");
+            if (args.Length == 0)
+            {
+                _audioHandler.Play();
+                return;
+            }
+
+            IList<string> tracks = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly).ToList();
+
+            foreach(string item in tracks)
+            {
+                if (item.ContainsAll(args))
+                {
+                    _audioHandler.Play(item);
+                }
+            }
+
         }
 
         public string Help()

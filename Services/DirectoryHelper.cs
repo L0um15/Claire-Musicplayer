@@ -34,5 +34,20 @@ namespace Claire_Musicplayer.Services
             }
         }
 
+        public static bool ContainsAll(this string str, string[] words)
+        {
+            bool found = true;
+            foreach(string item in words)
+            {
+                if (!str.ToLower().Contains(item.ToLower()))
+                {
+                    found = false;
+                    break;
+                }
+                    
+            }
+            return found;
+        }
+
     }
 }
