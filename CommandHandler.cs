@@ -16,13 +16,21 @@ namespace Claire_Musicplayer
 
         public CommandHandler(AudioHandler audioHandler)
         {
+            #region AudioCommands
             AddCommand(new PlayCommand(audioHandler));
             AddCommand(new PauseCommand(audioHandler));
             AddCommand(new StopCommand(audioHandler));
             AddCommand(new VolumeCommand(audioHandler));
+            #endregion
+
+            #region MovementCommands
             AddCommand(new ListCommand());
             AddCommand(new ChangeDirCommand());
+            #endregion
+
+            #region TerminalCommands
             AddCommand(new ClearConsoleCommand());
+            #endregion
         }
 
         public void AddCommand(ICommander command)
