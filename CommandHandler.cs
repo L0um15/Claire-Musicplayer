@@ -12,7 +12,6 @@ namespace Claire_Musicplayer
     {
         private static readonly Dictionary<string, ICommander> _commands = new Dictionary<string, ICommander>();
 
-
         public CommandHandler(AudioHandler audioHandler)
         {
             AddCommand(new PlayCommand(audioHandler));

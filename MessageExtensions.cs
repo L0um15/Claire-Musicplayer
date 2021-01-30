@@ -7,31 +7,29 @@ namespace Claire_Musicplayer
 {
     public static class MessageExtensions
     {
+        private static readonly List<object> _visibleOutput = new List<object>();
         private static readonly List<object> _outputHistory = new List<object>();
 
         /// <summary>
-        /// Writes text to console with padding equal to 3
+        /// Takes care of output format and prints to console with bottom padding = 3.
         /// </summary>
         /// <param name="message"></param>
         public static void WriteLine(object message)
         {
             if (Console.CursorTop == Console.BufferHeight - 3)
             {
-                var intended = _outputHistory.Skip(1).Take(_outputHistory.Count).ToList();
-                _outputHistory.Clear();
-                intended.ForEach(x => { _outputHistory.Add(x); });
+                var intended = _visibleOutput.Skip(1).Take(_visibleOutput.Count).ToList();
+                _visibleOutput.Clear();
+                intended.ForEach(x => { _visibleOutput.Add(x); });
             }
-            Console.Clear();
             _outputHistory.Add(message);
-            for (int i = 0; i < _outputHistory.Count; i++)
-            {
-                Console.WriteLine(_outputHistory[i]);
-            }
+            _visibleOutput.Add(message);
+            Refresh();
         }
+        
         /// <summary>
-        /// Moves cursor to the bottom of the console and waits for user input
+        /// Moves input field to the bottom of console.
         /// </summary>
-        /// <returns></returns>
         public static string ReadLine()
         {
             int defPosY = Console.CursorTop;
@@ -52,9 +50,9 @@ namespace Claire_Musicplayer
         public static void Refresh()
         {
             Console.Clear();
-            for (int i = 0; i < _outputHistory.Count; i++)
+            for (int i = 0; i < _visibleOutput.Count; i++)
             {
-                Console.WriteLine(_outputHistory[i]);
+                Console.WriteLine(_visibleOutput[i]);
             }
         }
     }
