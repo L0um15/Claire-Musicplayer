@@ -9,6 +9,7 @@ namespace Claire_Musicplayer.Services
     {
 
         private readonly WaveOutEvent _outputDevice;
+        private ForgedFileReader _forgedFileReader;
 
         /// <summary>
         /// Track path location
@@ -35,9 +36,9 @@ namespace Claire_Musicplayer.Services
                 return;
             }
             if (input == null) return;
-            var audioFile = new AudioFileReader(input);
+            _forgedFileReader = new ForgedFileReader(input);
             CurrentTrack = input;
-            _outputDevice.Init(new AutoDisposableFileReader(audioFile));
+            _outputDevice.Init(_forgedFileReader);
             _outputDevice.Play();
         }
 
@@ -52,6 +53,16 @@ namespace Claire_Musicplayer.Services
             CurrentTrack = null;
         }
 
+        public string GetPosition()
+        {
+            return _forgedFileReader.Position.ToString("mm\\:ss");
+        }
+
+        public string GetDuration()
+        {
+            return _forgedFileReader.Duration.ToString("mm\\:ss");
+        }
+
         public void Dispose()
         {
             _outputDevice.Dispose();
@@ -59,32 +70,39 @@ namespace Claire_Musicplayer.Services
     }
 
     /// <summary>
-    /// Disposes files after playback has stopped or finished.
+    /// Automatic AudioFileReader Disposal.
     /// </summary>
-    public class AutoDisposableFileReader : ISampleProvider
+    public class ForgedFileReader : ISampleProvider
     {
-        private AudioFileReader _audioFileReader;
+        private readonly AudioFileReader _source;
         private bool IsDisposed;
 
-        public AutoDisposableFileReader(AudioFileReader audioFileReader)
+        public ForgedFileReader(string input)
         {
-            _audioFileReader = audioFileReader;
-            WaveFormat = audioFileReader.WaveFormat;
+            _source = new AudioFileReader(input);
         }
+
+        public TimeSpan Position 
+            => _source.CurrentTime;
+
+        public TimeSpan Duration
+            => _source.TotalTime;
+
+        public WaveFormat WaveFormat => _source.WaveFormat;
 
         public int Read(float[] buffer, int offset, int count)
         {
             if (IsDisposed)
                 return 0;
 
-            int read = _audioFileReader.Read(buffer, offset, count);
-            if(read == 0)
+            int read = _source.Read(buffer, offset, count);
+            if (read == 0)
             {
-                _audioFileReader.Dispose();
+                _source.Dispose();
                 IsDisposed = true;
             }
             return read;
         }
-        public WaveFormat WaveFormat { get; private set; }
     }
+
 }

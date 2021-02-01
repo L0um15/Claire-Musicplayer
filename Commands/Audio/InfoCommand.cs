@@ -35,6 +35,7 @@ namespace Claire_Musicplayer.Commands.Audio
                 MessageExtensions.WriteLine($"Year: {trackInfo.Year}");
                 MessageExtensions.WriteLine($"Track Number: {trackInfo.TrackNumber}");
                 MessageExtensions.WriteLine($"Disc Number: {trackInfo.DiskNumber}");
+                MessageExtensions.WriteLine($"Pos/Dur: {_audioHandler.GetPosition()} / {_audioHandler.GetDuration()}");
             }
         }
 
