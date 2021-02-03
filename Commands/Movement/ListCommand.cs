@@ -18,7 +18,8 @@ namespace Claire_Musicplayer.Commands.Movement
             if(int.TryParse(arg, out int value))
             {
                 IList<string> entries = Directory.GetFileSystemEntries(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly)
-                    .OrderBy(e=> File.GetAttributes(e) != FileAttributes.Directory)
+                    .Where(e => !File.GetAttributes(e).HasFlag(FileAttributes.Hidden))
+                    .OrderBy(e=> !File.GetAttributes(e).HasFlag(FileAttributes.Directory))
                     .ToList();
 
                 IList<string> page = entries.Paginate(value, Console.BufferHeight - 3);

@@ -24,6 +24,9 @@ namespace Claire_Musicplayer.Commands.Audio
                 return;
             }
 
+            if (args[0] == string.Empty)
+                return;
+
             IList<string> tracks = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly).ToList();
 
             foreach(string item in tracks)

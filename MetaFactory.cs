@@ -30,10 +30,10 @@ namespace Claire_Musicplayer
         {
             return new TrackInfo()
             {
-                Artist = _file.Tag.Artists[0],
+                Artist = _file.Tag.Artists.Length > 0 ? _file.Tag.Artists[0] : null,
                 Title = _file.Tag.Title,
                 Album = _file.Tag.Album,
-                Genres = _file.Tag?.Genres[0],
+                Genres = _file.Tag.Genres.Length > 0 ? _file.Tag.Genres[0] : null,
                 Lyrics = _file.Tag.Lyrics,
                 Comments = _file.Tag.Comment,
                 Copyright = _file.Tag.Copyright,
