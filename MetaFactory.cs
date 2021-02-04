@@ -21,8 +21,10 @@ namespace Claire_Musicplayer
     public class MetaFactory : IDisposable
     {
         private readonly TagLib.File _file;
+
         public MetaFactory(string path)
         {
+            // Only reads file. Ignore "Create" keyword
             _file = TagLib.File.Create(path);
         }
 

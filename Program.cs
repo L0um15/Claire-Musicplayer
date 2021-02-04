@@ -13,7 +13,7 @@ namespace Claire_Musicplayer
             while (true)
             {
                 string input = MessageExtensions.ReadLine();
-                MessageExtensions.Refresh();
+                MessageExtensions.Flush();
                 commandHandler.Parse(input);
             }
         }

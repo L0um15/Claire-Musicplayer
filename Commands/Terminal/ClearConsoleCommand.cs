@@ -7,7 +7,7 @@ namespace Claire_Musicplayer.Commands.Terminal
 {
     public class ClearConsoleCommand : ICommander
     {
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
             MessageExtensions.Clear();
         }
@@ -17,7 +17,7 @@ namespace Claire_Musicplayer.Commands.Terminal
             return "Clears screen";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "clear";
         }

@@ -17,13 +17,19 @@ namespace Claire_Musicplayer.Services
         public string CurrentTrack { get; private set; }
         public int Volume 
         {
-            get => (int)Math.Round((decimal)_outputDevice.Volume * 100);
+            get => (int)MathF.Round(_outputDevice.Volume * 100);
             set { _outputDevice.Volume = (float)value / 100; }
         }
 
         public AudioHandler()
         {
             _outputDevice = new WaveOutEvent();
+            _outputDevice.PlaybackStopped += _outputDevice_PlaybackStopped;
+        }
+
+        private void _outputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            Stop();
         }
 
         public void Play(string input = null)

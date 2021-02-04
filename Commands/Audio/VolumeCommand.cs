@@ -16,7 +16,7 @@ namespace Claire_Musicplayer.Commands.Audio
             _audioHandler = audioHandler;
         }
 
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
             
             if(args.Length == 0)
@@ -49,7 +49,7 @@ namespace Claire_Musicplayer.Commands.Audio
             return "Display / Change Volume";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "vol";
         }

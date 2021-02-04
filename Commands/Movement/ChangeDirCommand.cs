@@ -8,11 +8,11 @@ namespace Claire_Musicplayer.Commands.Movement
 {
     public class ChangeDirCommand : ICommander
     {
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
             if (args.Length == 0) return;
 
-            string path = string.Join(" ", args);
+            string path = string.Join(' ', args.ToArray()); // :(
 
             DirectoryHelper.TrySetCurrentDirectory(path);
         }
@@ -22,7 +22,7 @@ namespace Claire_Musicplayer.Commands.Movement
             return "Changes directory";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "cd";
         }

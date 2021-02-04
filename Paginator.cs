@@ -11,12 +11,12 @@ namespace Claire_Musicplayer
         /// Split large lists into pages.
         /// </summary>
         /// <param name="list">List you want to paginate</param>
-        /// <param name="pageIndex">Index of the page you want to get</param>
+        /// <param name="pageNumber">Number of the page you want to get</param>
         /// <param name="pageSize">Max amount of items that page can have</param>
         /// <returns></returns>
-        public static IList<T> Paginate<T>(this IList<T> list, int pageIndex, int pageSize)
+        public static List<T> Paginate<T>(this List<T> list, int pageNumber, int pageSize)
         {
-            return list.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            return list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
     }
 }

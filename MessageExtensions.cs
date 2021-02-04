@@ -24,7 +24,7 @@ namespace Claire_Musicplayer
             }
             _outputHistory.Add(message);
             _visibleOutput.Add(message);
-            Refresh();
+            Flush();
         }
         
         /// <summary>
@@ -47,7 +47,7 @@ namespace Claire_Musicplayer
 
             return input;
         }
-        public static void Refresh()
+        public static void Flush()
         {
             Console.Clear();
             for (int i = 0; i < _visibleOutput.Count; i++)
@@ -59,7 +59,7 @@ namespace Claire_Musicplayer
         public static void Clear()
         {
             _visibleOutput.Clear();
-            Refresh();
+            Flush();
         }
     }
 }

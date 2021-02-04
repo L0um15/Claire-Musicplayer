@@ -10,19 +10,19 @@ namespace Claire_Musicplayer.Commands.Movement
 {
     public class ListCommand : ICommander
     {
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
 
-            string arg = args.Length > 0 ? args[0] : "0";
+            string arg = args.Length > 0 ? args[0] : "1";
 
             if(int.TryParse(arg, out int value))
             {
-                IList<string> entries = Directory.GetFileSystemEntries(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly)
+                List<string> entries = Directory.GetFileSystemEntries(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly)
                     .Where(e => !File.GetAttributes(e).HasFlag(FileAttributes.Hidden))
                     .OrderBy(e=> !File.GetAttributes(e).HasFlag(FileAttributes.Directory))
                     .ToList();
 
-                IList<string> page = entries.Paginate(value, Console.BufferHeight - 3);
+                List<string> page = entries.Paginate(value, Console.BufferHeight - 3);
 
                 for(int i = 0; i < page.Count; i++)
                 {
@@ -35,7 +35,6 @@ namespace Claire_Musicplayer.Commands.Movement
                     {
                         MessageExtensions.WriteLine($"      {Path.GetFileName(page[i])}");
                     }
-                    
                 }
             }
             else
@@ -49,7 +48,7 @@ namespace Claire_Musicplayer.Commands.Movement
             return "Shows directory structure";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "ls";
         }

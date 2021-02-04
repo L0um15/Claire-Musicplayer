@@ -16,7 +16,7 @@ namespace Claire_Musicplayer.Commands.Audio
             _audioHandler = audioHandler;
         }
 
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
             if(_audioHandler.CurrentTrack == null)
             {
@@ -44,7 +44,7 @@ namespace Claire_Musicplayer.Commands.Audio
             return "Display info about current track";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "info";
         }

@@ -16,7 +16,7 @@ namespace Claire_Musicplayer.Commands.Audio
             _audioHandler = audioHandler;
         }
 
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
             _audioHandler.Stop();
             MessageExtensions.WriteLine("Stopped!");
@@ -27,7 +27,7 @@ namespace Claire_Musicplayer.Commands.Audio
             return "Stops playback";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "stop";
         }

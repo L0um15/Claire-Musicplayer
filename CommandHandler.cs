@@ -36,8 +36,8 @@ namespace Claire_Musicplayer
 
         public void AddCommand(ICommander command)
         {
-            if (!_commands.ContainsKey(command.Invoke()))
-                _commands.Add(command.Invoke(), command);
+            if (!_commands.ContainsKey(command.GetName()))
+                _commands.Add(command.GetName(), command);
         }
 
         public void Parse(string input)
@@ -47,11 +47,11 @@ namespace Claire_Musicplayer
                 MessageExtensions.WriteLine("Nothing passed.");
                 return;
             }
-            string[] args = input.Split(" ").ToArray();
+            string[] args = input.Split(' ');
             string command = args[0];
-            args = args.Skip(1).Take(args.Length).ToArray();
+            var span = args.AsSpan(1);
             if (_commands.ContainsKey(command))
-                _commands[command].Execute(args);
+                _commands[command].Execute(span);
             else
                 MessageExtensions.WriteLine("Invalid Command, Try Again.");
         }

@@ -16,7 +16,7 @@ namespace Claire_Musicplayer.Commands.Audio
         {
             _audioHandler = audioHandler;
         }
-        public void Execute(string[] args)
+        public void Execute(ReadOnlySpan<string> args)
         {
             if (args.Length == 0)
             {
@@ -27,7 +27,7 @@ namespace Claire_Musicplayer.Commands.Audio
             if (args[0] == string.Empty)
                 return;
 
-            IList<string> tracks = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly).ToList();
+            List<string> tracks = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly).ToList();
 
             foreach(string item in tracks)
             {
@@ -36,7 +36,7 @@ namespace Claire_Musicplayer.Commands.Audio
                     _audioHandler.Play(item);
                 }
             }
-
+            MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
         }
 
         public string Help()
@@ -44,7 +44,7 @@ namespace Claire_Musicplayer.Commands.Audio
             return "Play's track";
         }
 
-        public string Invoke()
+        public string GetName()
         {
             return "play";
         }

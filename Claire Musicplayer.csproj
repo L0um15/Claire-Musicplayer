@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Claire_Musicplayer</RootNamespace>
+    <ApplicationIcon>Claire.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
