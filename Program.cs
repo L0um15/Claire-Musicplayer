@@ -10,6 +10,16 @@ namespace Claire_Musicplayer
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
             AudioHandler audioHandler = new AudioHandler();
             CommandHandler commandHandler = new CommandHandler(audioHandler);
+            MessageExtensions.WriteLine(" ▄████▄   ██▓     ▄▄▄       ██▓ ██▀███  ▓█████ ");
+            MessageExtensions.WriteLine("▒██▀ ▀█  ▓██▒    ▒████▄    ▓██▒▓██ ▒ ██▒▓█   ▀ ");
+            MessageExtensions.WriteLine("▒▓█    ▄ ▒██░    ▒██  ▀█▄  ▒██▒▓██ ░▄█ ▒▒███   ");
+            MessageExtensions.WriteLine("▒▓▓▄ ▄██▒▒██░    ░██▄▄▄▄██ ░██░▒██▀▀█▄  ▒▓█  ▄ ");
+            MessageExtensions.WriteLine("▒ ▓███▀ ░░██████▒ ▓█   ▓██▒░██░░██▓ ▒██▒░▒████▒");
+            MessageExtensions.WriteLine("░ ░▒ ▒  ░░ ▒░▓  ░ ▒▒   ▓▒█░░▓  ░ ▒▓ ░▒▓░░░ ▒░ ░");
+            MessageExtensions.WriteLine("  ░  ▒   ░ ░ ▒  ░  ▒   ▒▒ ░ ▒ ░  ░▒ ░ ▒░ ░ ░  ░");
+            MessageExtensions.WriteLine("░          ░ ░     ░   ▒    ▒ ░  ░░   ░    ░   ");
+            MessageExtensions.WriteLine("░ ░          ░  ░      ░  ░ ░     ░        ░  ░");
+            MessageExtensions.WriteLine("Waiting for orders");
             while (true)
             {
                 string input = MessageExtensions.ReadLine();
