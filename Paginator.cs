@@ -5,18 +5,32 @@ using System.Text;
 
 namespace Claire_Musicplayer
 {
-    public static class Paginator
+    public class Paginator<T>
     {
+        public IEnumerable<T> Data { get; private set; }
+        public int PageNumber { get; private set; }
+        public int PageSize { get; private set; }
+        public int ItemsTotal { get; private set; }
+        public int PageCount { get; private set; }
+
         /// <summary>
-        /// Split large lists into pages.
+        /// Simple Paginator Logic
         /// </summary>
-        /// <param name="list">List you want to paginate</param>
-        /// <param name="pageNumber">Number of the page you want to get</param>
-        /// <param name="pageSize">Max amount of items that page can have</param>
-        /// <returns></returns>
-        public static List<T> Paginate<T>(this List<T> list, int pageNumber, int pageSize)
+        /// <param name="data">Processed data</param>
+        /// <param name="pageSize">Number of items per page</param>
+        public Paginator(IEnumerable<T> data, int pageSize)
         {
-            return list.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            Data = data;
+            ItemsTotal = data.Count();
+            PageSize = pageSize;
+            PageCount = (int)Math.Ceiling((decimal)ItemsTotal / (decimal)PageSize);
         }
+
+        public List<T> GetPage(int pageNumber)
+        {
+            PageNumber = pageNumber;
+            return Data.Skip((pageNumber - 1) * PageSize).Take(PageSize).ToList();
+        }
+
     }
 }

@@ -22,20 +22,23 @@ namespace Claire_Musicplayer.Commands.Movement
                     .OrderBy(e=> !File.GetAttributes(e).HasFlag(FileAttributes.Directory))
                     .ToList();
 
-                List<string> page = entries.Paginate(value, Console.BufferHeight - 3);
+                Paginator<string> paginator = new Paginator<string>(entries, Console.BufferHeight - 4);
 
-                for(int i = 0; i < page.Count; i++)
+                List<string> pageEntries = paginator.GetPage(value);
+
+                for(int i = 0; i < pageEntries.Count; i++)
                 {
-                    FileAttributes attr = File.GetAttributes(page[i]);
+                    FileAttributes attr = File.GetAttributes(pageEntries[i]);
                     if(attr == FileAttributes.Directory)
                     {
-                        MessageExtensions.WriteLine($"<DIR> {Path.GetFileName(page[i])}");
+                        MessageExtensions.WriteLine($"<DIR> {Path.GetFileName(pageEntries[i])}");
                     }
                     else
                     {
-                        MessageExtensions.WriteLine($"      {Path.GetFileName(page[i])}");
+                        MessageExtensions.WriteLine($"      {Path.GetFileName(pageEntries[i])}");
                     }
                 }
+                MessageExtensions.WriteLine($"PAGE  {paginator.PageNumber} of {paginator.PageCount}");
             }
             else
             {
