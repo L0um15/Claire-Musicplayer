@@ -10,15 +10,12 @@ namespace Claire_Musicplayer
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
             AudioHandler audioHandler = new AudioHandler();
             CommandHandler commandHandler = new CommandHandler(audioHandler);
-            MessageExtensions.WriteLine(" ▄████▄   ██▓     ▄▄▄       ██▓ ██▀███  ▓█████ ");
-            MessageExtensions.WriteLine("▒██▀ ▀█  ▓██▒    ▒████▄    ▓██▒▓██ ▒ ██▒▓█   ▀ ");
-            MessageExtensions.WriteLine("▒▓█    ▄ ▒██░    ▒██  ▀█▄  ▒██▒▓██ ░▄█ ▒▒███   ");
-            MessageExtensions.WriteLine("▒▓▓▄ ▄██▒▒██░    ░██▄▄▄▄██ ░██░▒██▀▀█▄  ▒▓█  ▄ ");
-            MessageExtensions.WriteLine("▒ ▓███▀ ░░██████▒ ▓█   ▓██▒░██░░██▓ ▒██▒░▒████▒");
-            MessageExtensions.WriteLine("░ ░▒ ▒  ░░ ▒░▓  ░ ▒▒   ▓▒█░░▓  ░ ▒▓ ░▒▓░░░ ▒░ ░");
-            MessageExtensions.WriteLine("  ░  ▒   ░ ░ ▒  ░  ▒   ▒▒ ░ ▒ ░  ░▒ ░ ▒░ ░ ░  ░");
-            MessageExtensions.WriteLine("░          ░ ░     ░   ▒    ▒ ░  ░░   ░    ░   ");
-            MessageExtensions.WriteLine("░ ░          ░  ░      ░  ░ ░     ░        ░  ░");
+            MessageExtensions.WriteLine($"Claire Musicplayer v{Utilities.GetVersion()}");
+            MessageExtensions.WriteLine($"Looking for updates");
+            if(Utilities.GetLatestVersion() != null)
+            {
+                MessageExtensions.WriteLine($"Claire got an update! v{Utilities.GetLatestVersion()}");
+            }
             MessageExtensions.WriteLine("Waiting for orders");
             while (true)
             {
