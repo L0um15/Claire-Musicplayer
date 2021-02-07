@@ -17,28 +17,33 @@ namespace Claire_Musicplayer.Commands.Movement
 
             if(int.TryParse(arg, out int value))
             {
-                List<string> entries = Directory.GetFileSystemEntries(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly)
+                string[] entries = Directory.GetFileSystemEntries(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly)
                     .Where(e => !File.GetAttributes(e).HasFlag(FileAttributes.Hidden))
-                    .OrderBy(e=> !File.GetAttributes(e).HasFlag(FileAttributes.Directory))
-                    .ToList();
+                    .OrderBy(e=> !File.GetAttributes(e).HasFlag(FileAttributes.Directory)).ToArray();
 
                 Paginator<string> paginator = new Paginator<string>(entries, Console.BufferHeight - 4);
 
-                List<string> pageEntries = paginator.GetPage(value);
-
-                for(int i = 0; i < pageEntries.Count; i++)
+                if (!paginator.IsValidPage(value))
                 {
-                    FileAttributes attr = File.GetAttributes(pageEntries[i]);
+                    MessageExtensions.WriteLine("Page was out of range");
+                    return;
+                }
+
+                var page = paginator.GetPage(value);
+
+                for(int i = 0; i < page.Span.Length; i++)
+                {
+                    FileAttributes attr = File.GetAttributes(page.Span[i]);
                     if(attr == FileAttributes.Directory)
                     {
-                        MessageExtensions.WriteLine($"<DIR> {Path.GetFileName(pageEntries[i])}");
+                        MessageExtensions.WriteLine($"<DIR> {Path.GetFileName(page.Span[i])}");
                     }
                     else
                     {
-                        MessageExtensions.WriteLine($"      {Path.GetFileName(pageEntries[i])}");
+                        MessageExtensions.WriteLine($"      {Path.GetFileName(page.Span[i])}");
                     }
                 }
-                MessageExtensions.WriteLine($"PAGE  {paginator.PageNumber} of {paginator.PageCount}");
+                MessageExtensions.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
             }
             else
             {

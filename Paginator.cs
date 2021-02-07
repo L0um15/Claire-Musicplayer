@@ -1,36 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Claire_Musicplayer
 {
-    public class Paginator<T>
-    {
-        public IEnumerable<T> Data { get; private set; }
-        public int PageNumber { get; private set; }
-        public int PageSize { get; private set; }
-        public int ItemsTotal { get; private set; }
-        public int PageCount { get; private set; }
-
-        /// <summary>
-        /// Simple Paginator Logic
-        /// </summary>
-        /// <param name="data">Processed data</param>
-        /// <param name="pageSize">Number of items per page</param>
-        public Paginator(IEnumerable<T> data, int pageSize)
+    /// <summary>
+    /// Simple Paginator Logic
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public readonly struct Paginator<T>
+    { 
+        readonly T[] _arr;
+        public readonly int PageSize;
+        public readonly int ItemsTotal { get => _arr.Length; }
+        public readonly int PageCount 
         {
-            Data = data;
-            ItemsTotal = data.Count();
+            get
+            {
+                return (int)MathF.Ceiling((float)ItemsTotal / PageSize);
+            }
+        }
+
+        public Paginator(T[] arr, int pageSize) 
+        {
+            _arr = arr;
             PageSize = pageSize;
-            PageCount = (int)Math.Ceiling((decimal)ItemsTotal / (decimal)PageSize);
         }
 
-        public List<T> GetPage(int pageNumber)
+        public Page<T> GetPage(int pageNumber)
         {
+
+            if (!IsValidPage(pageNumber))
+                throw new ArgumentOutOfRangeException();
+
+            int index = pageNumber - 1;
+
+            int pageStart = index * PageSize;
+            int lengthToEnd = ItemsTotal - pageStart;
+
+            if(lengthToEnd / PageSize == 0)
+                return new Page<T>(_arr.AsSpan(pageStart, lengthToEnd), pageNumber);
+            else
+                return new Page<T>(_arr.AsSpan(pageStart, PageSize), pageNumber);
+        }
+        public bool IsValidPage(int pageNumber)
+        {
+            return !(pageNumber > PageCount || pageNumber < 1);
+        }
+    }
+    public readonly ref struct Page<T>
+    {
+        public Page(Span<T> span, int pageNumber)
+        {
+            Span = span;
             PageNumber = pageNumber;
-            return Data.Skip((pageNumber - 1) * PageSize).Take(PageSize).ToList();
         }
 
+        public readonly Span<T> Span;
+        public readonly int PageNumber;
     }
 }
