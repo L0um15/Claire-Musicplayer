@@ -10,10 +10,6 @@ namespace Claire_Musicplayer
         private static readonly List<object> _visibleOutput = new List<object>();
         private static readonly List<object> _outputHistory = new List<object>();
 
-        /// <summary>
-        /// Takes care of output format and prints to console with bottom padding = 3.
-        /// </summary>
-        /// <param name="message"></param>
         public static void WriteLine(object message)
         {
             if (Console.CursorTop == Console.BufferHeight - 3)
@@ -27,9 +23,6 @@ namespace Claire_Musicplayer
             Flush();
         }
         
-        /// <summary>
-        /// Moves input field to the bottom of console.
-        /// </summary>
         public static string ReadLine()
         {
             int defPosY = Console.CursorTop;

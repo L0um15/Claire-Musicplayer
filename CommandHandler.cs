@@ -12,7 +12,7 @@ namespace Claire_Musicplayer
 {
     public class CommandHandler
     {
-        private static readonly Dictionary<string, ICommander> _commands = new Dictionary<string, ICommander>();
+        public static readonly Dictionary<string, ICommander> commands = new Dictionary<string, ICommander>();
 
         public CommandHandler(AudioHandler audioHandler)
         {
@@ -31,13 +31,15 @@ namespace Claire_Musicplayer
 
             #region TerminalCommands
             AddCommand(new ClearConsoleCommand());
+            AddCommand(new HelpCommand());
+            AddCommand(new ExitCommand(audioHandler));
             #endregion
         }
 
         public void AddCommand(ICommander command)
         {
-            if (!_commands.ContainsKey(command.GetName()))
-                _commands.Add(command.GetName(), command);
+            if (!commands.ContainsKey(command.GetName()))
+                commands.Add(command.GetName(), command);
         }
 
         public void Parse(string input)
@@ -50,8 +52,8 @@ namespace Claire_Musicplayer
             string[] args = input.Split(' ');
             string command = args[0];
             var span = args.AsSpan(1);
-            if (_commands.ContainsKey(command))
-                _commands[command].Execute(span);
+            if (commands.ContainsKey(command))
+                commands[command].Execute(span);
             else
                 MessageExtensions.WriteLine("Invalid Command, Try Again.");
         }

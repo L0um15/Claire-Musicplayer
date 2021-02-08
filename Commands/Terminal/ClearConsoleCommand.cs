@@ -14,7 +14,7 @@ namespace Claire_Musicplayer.Commands.Terminal
 
         public string Help()
         {
-            return "Clears screen";
+            return "Clear's Screen";
         }
 
         public string GetName()

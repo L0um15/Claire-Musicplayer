@@ -41,7 +41,7 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string Help()
         {
-            return "Play's track";
+            return "Starts Playback";
         }
 
         public string GetName()

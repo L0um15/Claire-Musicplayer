@@ -53,7 +53,7 @@ namespace Claire_Musicplayer.Commands.Movement
 
         public string Help()
         {
-            return "Shows directory structure";
+            return "Shows Directory structure";
         }
 
         public string GetName()

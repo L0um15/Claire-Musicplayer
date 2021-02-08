@@ -24,5 +24,19 @@ namespace Claire_Musicplayer
 
         public static string GetVersion()
             => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+        public static bool ContainsAll(this string str, ReadOnlySpan<string> words)
+        {
+            bool found = true;
+            foreach (string item in words)
+            {
+                if (!str.Contains(item, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    found = false;
+                    break;
+                }
+            }
+            return found;
+        }
     }
 }

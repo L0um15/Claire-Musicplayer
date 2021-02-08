@@ -36,20 +36,5 @@ namespace Claire_Musicplayer.Services
             }
             return false;
         }
-
-        public static bool ContainsAll(this string str, ReadOnlySpan<string> words)
-        {
-            bool found = true;
-            foreach(string item in words)
-            {
-                if (!str.Contains(item, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    found = false;
-                    break;
-                }
-            }
-            return found;
-        }
-
     }
 }

@@ -24,7 +24,7 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string Help()
         {
-            return "Pause playback";
+            return "Pauses Playback";
         }
 
         public string GetName()

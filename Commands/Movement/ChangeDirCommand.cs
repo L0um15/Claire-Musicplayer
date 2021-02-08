@@ -19,7 +19,7 @@ namespace Claire_Musicplayer.Commands.Movement
 
         public string Help()
         {
-            return "Changes directory";
+            return "Changes Directory";
         }
 
         public string GetName()

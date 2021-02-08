@@ -46,7 +46,7 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string Help()
         {
-            return "Display / Change Volume";
+            return "Display's / Changes Volume level";
         }
 
         public string GetName()

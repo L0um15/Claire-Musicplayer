@@ -59,7 +59,7 @@ namespace Claire_Musicplayer.Commands.Audio
         }
         public string Help()
         {
-            return "Display info about current track";
+            return "Displays Track information";
         }
 
         public string GetName()
