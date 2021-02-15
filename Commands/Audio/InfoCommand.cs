@@ -26,7 +26,7 @@ namespace Claire_Musicplayer.Commands.Audio
                 return;
             }
 
-            TrackInfo trackInfo = GetInfo(_audioManager.CurrentTrack);
+            TrackInfo trackInfo = Utilities.GetTrackInfo(_audioManager.CurrentTrack);
 
             TimeSpan currentTimeSpan = _audioManager.GetPositionAsTimeSpan();
             TimeSpan totalTimeSpan = _audioManager.GetDurationAsTimeSpan();
@@ -64,25 +64,6 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine($"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
         }
 
-        public static TrackInfo GetInfo(string path)
-        {
-            var _file = TagLib.File.Create(path);
-            TrackInfo trackInfo = new TrackInfo()
-            {
-                Artist = _file.Tag.Artists.Length > 0 ? _file.Tag.Artists[0] : null,
-                Title = _file.Tag.Title,
-                Album = _file.Tag.Album,
-                Genres = _file.Tag.Genres.Length > 0 ? _file.Tag.Genres[0] : null,
-                Lyrics = _file.Tag.Lyrics,
-                Comments = _file.Tag.Comment,
-                Copyright = _file.Tag.Copyright,
-                TrackNumber = _file.Tag.Track,
-                DiskNumber = _file.Tag.Disc,
-                Year = _file.Tag.Year
-            };
-            _file.Dispose();
-            return trackInfo;
-        }
         public string Help()
         {
             return "Displays Track information";

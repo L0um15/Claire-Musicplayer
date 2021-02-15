@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Claire_Musicplayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
@@ -31,6 +32,28 @@ namespace Claire_Musicplayer
 
         public static string GetVersion()
             => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+
+        public static TrackInfo GetTrackInfo(string path)
+        {
+            var _file = TagLib.File.Create(path);
+            TrackInfo trackInfo = new TrackInfo()
+            {
+                Artist = _file.Tag.Artists.Length > 0 ? _file.Tag.Artists[0] : null,
+                Title = _file.Tag.Title,
+                Album = _file.Tag.Album,
+                Genres = _file.Tag.Genres.Length > 0 ? _file.Tag.Genres[0] : null,
+                Lyrics = _file.Tag.Lyrics,
+                Comments = _file.Tag.Comment,
+                Copyright = _file.Tag.Copyright,
+                TrackNumber = _file.Tag.Track,
+                DiskNumber = _file.Tag.Disc,
+                Year = _file.Tag.Year
+            };
+            _file.Dispose();
+            return trackInfo;
+        }
+
 
         public static bool ContainsAll(this string str, ReadOnlySpan<string> words)
         {
