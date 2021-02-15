@@ -2,11 +2,11 @@
 using Claire_Musicplayer.Commands.Terminal;
 using Claire_Musicplayer.Commands.Movement;
 using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Claire_Musicplayer.Services.Audio;
 
 namespace Claire_Musicplayer
 {
@@ -14,7 +14,7 @@ namespace Claire_Musicplayer
     {
         public static readonly Dictionary<string, ICommander> commands = new Dictionary<string, ICommander>();
 
-        public CommandHandler(AudioHandler audioHandler)
+        public CommandHandler(AudioManager audioHandler)
         {
             #region AudioCommands
             AddCommand(new PlayCommand(audioHandler));

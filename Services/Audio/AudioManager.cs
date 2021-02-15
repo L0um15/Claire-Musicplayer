@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Services
+namespace Claire_Musicplayer.Services.Audio
 {
-    public class AudioHandler : IDisposable
+    public class AudioManager : IDisposable
     {
 
         private readonly WaveOutEvent _outputDevice;
@@ -15,28 +15,22 @@ namespace Claire_Musicplayer.Services
         /// Track path location
         /// </summary>
         public string CurrentTrack { get; private set; }
-        public int Volume 
+        public int Volume
         {
             get => (int)MathF.Round(_outputDevice.Volume * 100);
             set { _outputDevice.Volume = (float)value / 100; }
         }
 
-        public AudioHandler()
+        public AudioManager()
         {
             _outputDevice = new WaveOutEvent();
-            _outputDevice.PlaybackStopped += _outputDevice_PlaybackStopped;
-        }
-
-        private void _outputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
-        {
-            Stop();
         }
 
         public void Play(string input = null)
         {
-            if(_outputDevice.PlaybackState == PlaybackState.Playing)
+            if (_outputDevice.PlaybackState == PlaybackState.Playing)
                 Stop();
-            if(_outputDevice.PlaybackState == PlaybackState.Paused)
+            if (_outputDevice.PlaybackState == PlaybackState.Paused)
             {
                 _outputDevice.Play();
                 return;
@@ -74,41 +68,4 @@ namespace Claire_Musicplayer.Services
             _outputDevice.Dispose();
         }
     }
-
-    /// <summary>
-    /// Automatic AudioFileReader Disposal.
-    /// </summary>
-    public class ForgedFileReader : ISampleProvider
-    {
-        private readonly AudioFileReader _source;
-        private bool IsDisposed;
-
-        public ForgedFileReader(string input)
-        {
-            _source = new AudioFileReader(input);
-        }
-
-        public TimeSpan Position 
-            => _source.CurrentTime;
-
-        public TimeSpan Duration
-            => _source.TotalTime;
-
-        public WaveFormat WaveFormat => _source.WaveFormat;
-
-        public int Read(float[] buffer, int offset, int count)
-        {
-            if (IsDisposed)
-                return 0;
-
-            int read = _source.Read(buffer, offset, count);
-            if (read == 0)
-            {
-                _source.Dispose();
-                IsDisposed = true;
-            }
-            return read;
-        }
-    }
-
 }

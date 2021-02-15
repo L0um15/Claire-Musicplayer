@@ -1,5 +1,6 @@
 ﻿using Claire_Musicplayer.Interfaces;
 using Claire_Musicplayer.Services;
+using Claire_Musicplayer.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,17 +11,17 @@ namespace Claire_Musicplayer.Commands.Audio
 {
     public class PlayCommand : ICommander
     {
-        private readonly AudioHandler _audioHandler;
+        private readonly AudioManager _audioManager;
 
-        public PlayCommand(AudioHandler audioHandler)
+        public PlayCommand(AudioManager audioManager)
         {
-            _audioHandler = audioHandler;
+            _audioManager = audioManager;
         }
         public void Execute(ReadOnlySpan<string> args)
         {
             if (args.Length == 0)
             {
-                _audioHandler.Play();
+                _audioManager.Play();
                 return;
             }
 
@@ -33,7 +34,7 @@ namespace Claire_Musicplayer.Commands.Audio
             {
                 if (item.ContainsAll(args))
                 {
-                    _audioHandler.Play(item);
+                    _audioManager.Play(item);
                 }
             }
             MessageExtensions.WriteLine("Playing. Type \"info\" for details.");

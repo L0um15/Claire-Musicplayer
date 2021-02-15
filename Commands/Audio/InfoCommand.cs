@@ -1,6 +1,6 @@
 ﻿using Claire_Musicplayer.Interfaces;
 using Claire_Musicplayer.Models;
-using Claire_Musicplayer.Services;
+using Claire_Musicplayer.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,22 +10,22 @@ namespace Claire_Musicplayer.Commands.Audio
     public class InfoCommand : ICommander
     {
 
-        private readonly AudioHandler _audioHandler;
+        private readonly AudioManager _audioManager;
 
-        public InfoCommand(AudioHandler audioHandler)
+        public InfoCommand(AudioManager audioManager)
         {
-            _audioHandler = audioHandler;
+            _audioManager = audioManager;
         }
 
         public void Execute(ReadOnlySpan<string> args)
         {
-            if(_audioHandler.CurrentTrack == null)
+            if(_audioManager.CurrentTrack == null)
             {
                 MessageExtensions.WriteLine("Currently nothing is playing.");
                 return;
             }
 
-            TrackInfo trackInfo = GetInfo(_audioHandler.CurrentTrack);
+            TrackInfo trackInfo = GetInfo(_audioManager.CurrentTrack);
 
             MessageExtensions.Clear();
             MessageExtensions.WriteLine($"Track: {trackInfo.Artist} - {trackInfo.Title}");
@@ -35,7 +35,7 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine($"Year: {trackInfo.Year}");
             MessageExtensions.WriteLine($"Track Number: {trackInfo.TrackNumber}");
             MessageExtensions.WriteLine($"Disc Number: {trackInfo.DiskNumber}");
-            MessageExtensions.WriteLine($"Pos/Dur: {_audioHandler.GetPosition()} / {_audioHandler.GetDuration()}");
+            MessageExtensions.WriteLine($"Pos/Dur: {_audioManager.GetPosition()} / {_audioManager.GetDuration()}");
         }
 
         public static TrackInfo GetInfo(string path)

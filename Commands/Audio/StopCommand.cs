@@ -1,5 +1,5 @@
 ﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
+using Claire_Musicplayer.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,16 +9,16 @@ namespace Claire_Musicplayer.Commands.Audio
     public class StopCommand : ICommander
     {
 
-        private readonly AudioHandler _audioHandler;
+        private readonly AudioManager _audioManager;
 
-        public StopCommand(AudioHandler audioHandler)
+        public StopCommand(AudioManager audioManager)
         {
-            _audioHandler = audioHandler;
+            _audioManager = audioManager;
         }
 
         public void Execute(ReadOnlySpan<string> args)
         {
-            _audioHandler.Stop();
+            _audioManager.Stop();
             MessageExtensions.WriteLine("Stopped!");
         }
 

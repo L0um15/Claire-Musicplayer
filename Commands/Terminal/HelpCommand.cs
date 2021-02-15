@@ -9,7 +9,7 @@ namespace Claire_Musicplayer.Commands.Terminal
     {
         public void Execute(ReadOnlySpan<string> args)
         {
-            int pageNum = 0;
+            int pageNum = 1;
             if (args.Length > 0)
             {
                 if (int.TryParse(args[0], out int value))
@@ -22,8 +22,6 @@ namespace Claire_Musicplayer.Commands.Terminal
                     return;
                 }
             }
-            else
-                pageNum = 1;
 
             string[] helpPage = new string[CommandHandler.commands.Count];
             
@@ -31,7 +29,7 @@ namespace Claire_Musicplayer.Commands.Terminal
             
             foreach (KeyValuePair<string, ICommander> keyValuePair in CommandHandler.commands) 
             {
-                helpPage[i] = $" {keyValuePair.Key} - {keyValuePair.Value.Help()}";
+                helpPage[i] = $"{keyValuePair.Key} - {keyValuePair.Value.Help()}";
                 i++;
             }
 

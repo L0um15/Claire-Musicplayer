@@ -1,4 +1,4 @@
-﻿using Claire_Musicplayer.Services;
+﻿using Claire_Musicplayer.Services.Audio;
 using System;
 
 namespace Claire_Musicplayer
@@ -8,7 +8,7 @@ namespace Claire_Musicplayer
         public static void Main(string[] args)
         {
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
-            AudioHandler audioHandler = new AudioHandler();
+            AudioManager audioHandler = new AudioManager();
             CommandHandler commandHandler = new CommandHandler(audioHandler);
             MessageExtensions.WriteLine($"Claire Musicplayer v{Utilities.GetVersion()}");
             MessageExtensions.WriteLine($"Looking for updates");

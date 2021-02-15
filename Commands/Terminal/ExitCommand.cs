@@ -1,5 +1,5 @@
 ﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
+using Claire_Musicplayer.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,15 +9,15 @@ namespace Claire_Musicplayer.Commands.Terminal
     public class ExitCommand : ICommander
     {
 
-        private readonly AudioHandler _audioHandler;
-        public ExitCommand(AudioHandler audioHandler)
+        private readonly AudioManager _audioManager;
+        public ExitCommand(AudioManager audioManager)
         {
-            _audioHandler = audioHandler;
+            _audioManager = audioManager;
         }
 
         public void Execute(ReadOnlySpan<string> args)
         {
-            _audioHandler.Dispose();
+            _audioManager.Dispose();
             Environment.Exit(0);
         }
 

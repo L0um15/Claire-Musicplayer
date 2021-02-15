@@ -1,5 +1,5 @@
 ﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
+using Claire_Musicplayer.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,11 +9,11 @@ namespace Claire_Musicplayer.Commands.Audio
     public class VolumeCommand : ICommander
     {
 
-        private readonly AudioHandler _audioHandler;
+        private readonly AudioManager _audioManager;
 
-        public VolumeCommand(AudioHandler audioHandler)
+        public VolumeCommand(AudioManager _audioManager)
         {
-            _audioHandler = audioHandler;
+            this._audioManager = _audioManager;
         }
 
         public void Execute(ReadOnlySpan<string> args)
@@ -21,7 +21,7 @@ namespace Claire_Musicplayer.Commands.Audio
             
             if(args.Length == 0)
             {
-                MessageExtensions.WriteLine($"Current Volume: {_audioHandler.Volume}%");
+                MessageExtensions.WriteLine($"Current Volume: {_audioManager.Volume}%");
                 return;
             }
 
@@ -31,7 +31,7 @@ namespace Claire_Musicplayer.Commands.Audio
                 {
                     if (value >= 0 && value <= 100)
                     {
-                        _audioHandler.Volume = value;
+                        _audioManager.Volume = value;
                         MessageExtensions.WriteLine($"Volume changed to: {value}%");
                     }
                     else
