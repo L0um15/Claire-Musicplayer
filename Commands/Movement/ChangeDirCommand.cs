@@ -19,7 +19,7 @@ namespace Claire_Musicplayer.Commands.Movement
             if (DirectoryHelper.TrySetCurrentDirectory(path))
             {
                 DirectoryHelper.Tracklist.Clear();
-                string[] allFiles = Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly);
+                string[] allFiles = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly);
                 for(int i = 0; i < allFiles.Length; i++)
                 {
                     if (Utilities.AllowedMediaExtensions.Contains(Path.GetExtension(allFiles[i]).ToLower()))
