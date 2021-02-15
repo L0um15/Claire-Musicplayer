@@ -11,21 +11,28 @@
 
 *"No fancy gui's, just me and commandline" ~L0um15*
 
-Very basic functionality. Not intended for general use yet.<br/>
 *You can report issues at the issue tracker*
 
 Main goal for Claire is to mimic commandline behaviour as much beginner friendly as possible,
 meaning of which: no flags, complicated command syntaxes etc. *(Regex searching will be possible for experienced users and enabled by default)*<br/>
 
-If you want to make a pull request here some things you need to know before commiting changes:
+If you want to contribute, here are some things you need to know before commiting changes:
  - *Any disk operations like overwriting files and file deletion are forbidden*
  - *Operations that require root permissions are forbidden as well (Linux builds / Security reasons)*
  - *Every command must be isolated. DO NOT execute other commands without user knowledge*
 
 
-**First release will be uploaded soon, stay tuned!.**
+**First alpha build is available now.**
 
-<img src=".github/images/preview.png">
+**Linux build is not available until next release**<br />
+*Stay tuned!*
+
+
+<img src=".github/images/preview1.png">
+
+<img src=".github/images/preview2.png">
+
+<img src=".github/images/preview3.png">
 
 
 
