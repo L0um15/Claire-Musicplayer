@@ -11,9 +11,8 @@ namespace Claire_Musicplayer.Services.Audio
         private readonly WaveOutEvent _outputDevice;
         private ForgedFileReader _forgedFileReader;
 
-        /// <summary>
-        /// Track path location
-        /// </summary>
+        public PlaybackState CurrentState => _outputDevice.PlaybackState;
+        public bool HasUserInterrupted { get; set; }
         public string CurrentTrack { get; private set; }
         public int Volume
         {
@@ -24,43 +23,81 @@ namespace Claire_Musicplayer.Services.Audio
         public AudioManager()
         {
             _outputDevice = new WaveOutEvent();
+            _outputDevice.PlaybackStopped += _outputDevice_PlaybackStopped;
         }
 
-        public void Play(string input = null)
+        private void _outputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
         {
-            if (_outputDevice.PlaybackState == PlaybackState.Playing)
-                Stop();
-            if (_outputDevice.PlaybackState == PlaybackState.Paused)
+            if (!HasUserInterrupted)
             {
-                _outputDevice.Play();
-                return;
+                List<string> tracks = DirectoryHelper.Tracklist;
+                int index = tracks.IndexOf(CurrentTrack);
+                index++;
+                if (index < tracks.Count)
+                {
+                    CurrentTrack = tracks[index];
+                    Load(CurrentTrack);
+                    Play();
+                }
             }
-            if (input == null) return;
+        }
+
+        public void Load(string input)
+        {
+            if (CurrentState != PlaybackState.Stopped)
+            {
+                HasUserInterrupted = true; // Obviously user interrupted during playback
+                if (!_forgedFileReader.IsDisposed)
+                    _forgedFileReader.Dispose();
+                _outputDevice.Stop();
+            }
             _forgedFileReader = new ForgedFileReader(input);
-            CurrentTrack = input;
             _outputDevice.Init(_forgedFileReader);
-            _outputDevice.Play();
+            CurrentTrack = input;
+        }
+
+        public void Play()
+        {
+            if (CurrentState != PlaybackState.Playing)
+            {
+                if (_forgedFileReader != null)
+                {
+                    if (!_forgedFileReader.IsDisposed)
+                    {
+                        HasUserInterrupted = false;
+                        _outputDevice.Play();
+                    }
+                }
+            }
+                
         }
 
         public void Pause()
         {
-            _outputDevice.Pause();
+            if(CurrentState == PlaybackState.Playing)
+                _outputDevice.Pause();
         }
 
         public void Stop()
         {
-            _outputDevice.Stop();
-            CurrentTrack = null;
+            if(CurrentState != PlaybackState.Stopped)
+            {
+                HasUserInterrupted = true;
+                _outputDevice.Stop();
+                if (!_forgedFileReader.IsDisposed)
+                    _forgedFileReader.Dispose();
+                CurrentTrack = null;
+            }
         }
 
-        public string GetPosition()
+        public TimeSpan GetPositionAsTimeSpan()
         {
-            return _forgedFileReader.Position.ToString("mm\\:ss");
+            return _forgedFileReader.Position;
         }
 
-        public string GetDuration()
+        public TimeSpan GetDurationAsTimeSpan()
         {
-            return _forgedFileReader.Duration.ToString("mm\\:ss");
+            return _forgedFileReader.Duration;
         }
 
         public void Dispose()

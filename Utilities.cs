@@ -8,6 +8,13 @@ namespace Claire_Musicplayer
 {
     public static class Utilities
     {
+
+        public static string[] AllowedMediaExtensions = {
+            ".mp3", ".m4a", ".wav",
+            ".aiff", ".alac", ".flac",
+            ".midi", ".ogg"
+        };
+
         public static string GetLatestVersion()
         {
             try

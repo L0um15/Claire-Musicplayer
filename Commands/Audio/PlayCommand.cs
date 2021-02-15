@@ -1,6 +1,7 @@
 ﻿using Claire_Musicplayer.Interfaces;
 using Claire_Musicplayer.Services;
 using Claire_Musicplayer.Services.Audio;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,14 +31,20 @@ namespace Claire_Musicplayer.Commands.Audio
 
             List<string> tracks = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly).ToList();
 
+            bool matchFound = false;
             foreach(string item in tracks)
             {
                 if (item.ContainsAll(args))
                 {
-                    _audioManager.Play(item);
+                    matchFound = true;
+                    _audioManager.Load(item);
+                    _audioManager.Play();
+                    break;
                 }
             }
-            MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
+
+            if(_audioManager.CurrentState == PlaybackState.Playing && matchFound)
+                MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
         }
 
         public string Help()

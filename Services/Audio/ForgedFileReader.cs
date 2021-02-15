@@ -8,10 +8,10 @@ namespace Claire_Musicplayer.Services.Audio
     /// <summary>
     /// Automatic AudioFileReader Disposal.
     /// </summary>
-    public class ForgedFileReader : ISampleProvider
+    public class ForgedFileReader : ISampleProvider, IDisposable
     {
         private readonly AudioFileReader _source;
-        private bool IsDisposed;
+        public bool IsDisposed { get; private set; }
 
         public ForgedFileReader(string input)
         {
@@ -26,6 +26,15 @@ namespace Claire_Musicplayer.Services.Audio
 
         public WaveFormat WaveFormat => _source.WaveFormat;
 
+        public void Dispose()
+        {
+            if (_source != null)
+            {
+                IsDisposed = true;
+                _source.Dispose();
+            }
+        }
+
         public int Read(float[] buffer, int offset, int count)
         {
             if (IsDisposed)
@@ -34,8 +43,7 @@ namespace Claire_Musicplayer.Services.Audio
             int read = _source.Read(buffer, offset, count);
             if (read == 0)
             {
-                _source.Dispose();
-                IsDisposed = true;
+                Dispose();
             }
             return read;
         }
