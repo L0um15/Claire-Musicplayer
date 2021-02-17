@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Claire_Musicplayer.Services
@@ -36,5 +37,19 @@ namespace Claire_Musicplayer.Services
             }
             return false;
         }
+
+        public static void PrepareTracklist()
+        {
+            Tracklist.Clear();
+            string[] allFiles = Directory.GetFiles(CurrentDirectory, "*", SearchOption.TopDirectoryOnly);
+            for (int i = 0; i < allFiles.Length; i++)
+            {
+                if (Utilities.AllowedMediaExtensions.Contains(Path.GetExtension(allFiles[i]).ToLower()))
+                {
+                    Tracklist.Add(allFiles[i]);
+                }
+            }
+        }
+
     }
 }

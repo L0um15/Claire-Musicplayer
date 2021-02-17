@@ -30,29 +30,31 @@ namespace Claire_Musicplayer.Commands.Audio
                     if (int.TryParse(args[0], out int value))
                         pageNum = value;
 
-            string[] lyrics = Utilities.GetTrackInfo(_audioManager.CurrentTrack)
-                .Lyrics.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+            string mergedLyrics = Utilities.GetTrackInfo(_audioManager.CurrentTrack).Lyrics;
 
-            if (lyrics != null)
+            if(mergedLyrics == null)
             {
-                Paginator<string> paginator = new Paginator<string>(lyrics, Console.BufferHeight - 4);
+                MessageExtensions.WriteLine("Sorry, this track does not contains any lyrics");
+                return;
+            }
 
-                if (paginator.IsValidPage(pageNum))
+            string[] lyrics = mergedLyrics.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+
+            Paginator<string> paginator = new Paginator<string>(lyrics, Console.BufferHeight - 4);
+
+            if (paginator.IsValidPage(pageNum))
+            {
+                Page<string> page = paginator.GetPage(pageNum);
+
+                for(int i = 0; i < page.Span.Length; i++)
                 {
-                    Page<string> page = paginator.GetPage(pageNum);
-
-                    for(int i = 0; i < page.Span.Length; i++)
-                    {
-                        MessageExtensions.WriteLine("   " + page.Span[i]);
-                    }
-                    MessageExtensions.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
+                    MessageExtensions.WriteLine("   " + page.Span[i]);
                 }
-                else
-                    MessageExtensions.WriteLine("Page was out of range");
-
+                MessageExtensions.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
             }
             else
-                MessageExtensions.WriteLine("Sorry, this track does not contains any lyrics");
+                MessageExtensions.WriteLine("Page was out of range");
+
 
         }
 

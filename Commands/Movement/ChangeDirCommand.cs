@@ -17,18 +17,7 @@ namespace Claire_Musicplayer.Commands.Movement
             string path = string.Join(' ', args.ToArray()); // :(
 
             if (DirectoryHelper.TrySetCurrentDirectory(path))
-            {
-                DirectoryHelper.Tracklist.Clear();
-                string[] allFiles = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly);
-                for(int i = 0; i < allFiles.Length; i++)
-                {
-                    if (Utilities.AllowedMediaExtensions.Contains(Path.GetExtension(allFiles[i]).ToLower()))
-                    {
-                        DirectoryHelper.Tracklist.Add(allFiles[i]);
-                    }
-                }
-
-            }
+                DirectoryHelper.PrepareTracklist();
         }
 
         public string Help()
