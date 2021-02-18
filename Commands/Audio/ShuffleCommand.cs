@@ -28,6 +28,16 @@ namespace Claire_Musicplayer.Commands.Audio
 
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Shuffles playlist using Fisher-Yates Algorithm"
+            };
+        }
+
         public string GetName()
         {
             return "shuffle";

@@ -64,6 +64,16 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine($"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Displays full detailed information about track artist, album, genres etc."
+            };
+        }
+
         public string Help()
         {
             return "Displays Track information";

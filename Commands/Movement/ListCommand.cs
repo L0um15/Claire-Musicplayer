@@ -51,6 +51,18 @@ namespace Claire_Musicplayer.Commands.Movement
             }   
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <integer>",
+                $"Usage: {GetName()} 2",
+                "Description: This command is using paginator.",
+                "To move between pages you need to specify integer from 1 to (N)",
+                "Lists every file in current directory"
+            };
+        }
+
         public string Help()
         {
             return "Shows Directory structure";

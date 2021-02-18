@@ -22,9 +22,19 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine("Paused!");
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Pauses playback"
+            };
+        }
+
         public string Help()
         {
-            return "Pauses Playback";
+            return "Pauses playback";
         }
 
         public string GetName()

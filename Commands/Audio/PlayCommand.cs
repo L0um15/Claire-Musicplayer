@@ -47,6 +47,19 @@ namespace Claire_Musicplayer.Commands.Audio
                 MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <strings>",
+                $"Usage: {GetName()} bury the light",
+                "Description: Initializes playback for given input",
+                "Move to track dir by using 'cd' command",
+                "Partial matching is supported: 'b he lig'",
+                "However typos are not."
+            };
+        }
+
         public string Help()
         {
             return "Starts Playback";

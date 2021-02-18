@@ -34,6 +34,7 @@ namespace Claire_Musicplayer
             #region TerminalCommands
             AddCommand(new ClearConsoleCommand());
             AddCommand(new HelpCommand());
+            AddCommand(new ManCommand());
             AddCommand(new ExitCommand(audioHandler));
             #endregion
         }

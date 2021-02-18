@@ -20,6 +20,19 @@ namespace Claire_Musicplayer.Commands.Movement
                 DirectoryHelper.RefreshTracklist();
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <string>",
+                $"Usage: {GetName()} C:\\Users\\default user\\music",
+                "Description: Changes current directory",
+                "Path can be absolute: C:\\Users\\defaultuser\\music",
+                "Or relative: ../../../music/",
+                "Whitespaces are allowed: C:\\Users\\default user\\music"
+            };
+        }
+
         public string Help()
         {
             return "Changes Directory";

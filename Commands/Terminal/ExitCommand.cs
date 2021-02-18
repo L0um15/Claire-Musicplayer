@@ -21,6 +21,16 @@ namespace Claire_Musicplayer.Commands.Terminal
             Environment.Exit(0);
         }
 
+        public string[] GetManual()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Disposes everything that is running then closes program."
+            };
+        }
+
         public string GetName()
         {
             return "exit";
