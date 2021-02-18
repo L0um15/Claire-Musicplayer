@@ -54,7 +54,14 @@ namespace Claire_Musicplayer.Commands.Terminal
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <integer>",
+                $"Usage: {GetName()} 2",
+                "Description: This command is using paginator.",
+                "To move between pages you need to specify integer from 1 to (N)",
+                "Displays every loaded command."
+            };
         }
 
         public string GetName()
@@ -64,7 +71,7 @@ namespace Claire_Musicplayer.Commands.Terminal
 
         public string Help()
         {
-            return "Display's Help Page";
+            return "Displays help page";
         }
     }
 }

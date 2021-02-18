@@ -60,7 +60,14 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <integer>",
+                $"Usage: {GetName()} 2",
+                "Description: This command is using paginator.",
+                "To move between pages you need to specify integer from 1 to (N)",
+                "Attempts to get encoded lyrics from track meta"
+            };
         }
 
         public string GetName()

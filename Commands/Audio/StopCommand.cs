@@ -24,7 +24,13 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Stops current playback",
+                "Disables continous playlist playback"
+            };
         }
 
         public string Help()

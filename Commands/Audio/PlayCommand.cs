@@ -49,7 +49,15 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <strings>",
+                $"Usage: {GetName()} bury the light",
+                "Description: Initializes playback for given input",
+                "Move to track dir by using 'cd' command",
+                "Partial match is supported: b he lig",
+                "However type-o is not."
+            };
         }
 
         public string Help()

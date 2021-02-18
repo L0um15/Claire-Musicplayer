@@ -32,7 +32,12 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Shuffles playlist using Fisher-Yates Algorithm"
+            };
         }
 
         public string GetName()

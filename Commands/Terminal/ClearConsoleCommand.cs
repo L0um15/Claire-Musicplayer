@@ -12,6 +12,16 @@ namespace Claire_Musicplayer.Commands.Terminal
             MessageExtensions.Clear();
         }
 
+        public string[] GetMan()
+        {
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Clears console output without wiping history."
+            };
+        }
+
         public string Help()
         {
             return "Clear's Screen";
@@ -20,11 +30,6 @@ namespace Claire_Musicplayer.Commands.Terminal
         public string GetName()
         {
             return "clear";
-        }
-
-        public string[] GetMan()
-        {
-            throw new NotImplementedException();
         }
     }
 }

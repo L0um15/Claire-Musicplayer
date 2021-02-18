@@ -23,7 +23,12 @@ namespace Claire_Musicplayer.Commands.Terminal
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Disposes everything that is running then closes program."
+            };
         }
 
         public string GetName()

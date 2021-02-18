@@ -9,15 +9,29 @@ namespace Claire_Musicplayer.Commands.Terminal
     {
         public void Execute(ReadOnlySpan<string> args)
         {
-            throw new NotImplementedException();
+            if(args.Length == 0)
+                return;
+
+            if (CommandHandler.commands.TryGetValue(args[0], out ICommander command))
+            {
+                string[] man = command.GetMan();
+                for(int i = 0; i < man.Length; i++)
+                    MessageExtensions.WriteLine(man[i]);
+            }
+            else
+            {
+                MessageExtensions.WriteLine("Man for this command does not exist.");
+            }
+
         }
 
         public string[] GetMan()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",
-                $"Usage: {GetName()} <command>",
-                "Returns: Detailed information about passed argument"
+                "Needs: <command>",
+                $"Usage: {GetName()} ls",
+                "Description: Gives detailed information about passed command"
             };
         }
 

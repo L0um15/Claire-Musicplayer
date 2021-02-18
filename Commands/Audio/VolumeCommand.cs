@@ -46,7 +46,14 @@ namespace Claire_Musicplayer.Commands.Audio
         
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: <integer>",
+                $"Usage: {GetName()} 100",
+                "Description: Changes volume level",
+                "Value cant be larger than 100 and lower than 0",
+                "This command changes system volume mixer"
+            };
         }
 
         public string Help()

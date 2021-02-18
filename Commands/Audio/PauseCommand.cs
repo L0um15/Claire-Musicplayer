@@ -24,12 +24,17 @@ namespace Claire_Musicplayer.Commands.Audio
 
         public string[] GetMan()
         {
-            throw new NotImplementedException();
+            return new string[] {
+                $"{GetName()} - {Help()}",
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Pauses playback"
+            };
         }
 
         public string Help()
         {
-            return "Pauses Playback";
+            return "Pauses playback";
         }
 
         public string GetName()
