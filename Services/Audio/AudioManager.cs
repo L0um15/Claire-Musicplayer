@@ -12,7 +12,7 @@ namespace Claire_Musicplayer.Services.Audio
         private ForgedFileReader _forgedFileReader;
 
         public PlaybackState CurrentState => _outputDevice.PlaybackState;
-        public bool HasUserInterrupted { get; set; }
+        public bool IsUserInterrupted { get; set; }
         public string CurrentTrack { get; private set; }
         public int Volume
         {
@@ -28,7 +28,7 @@ namespace Claire_Musicplayer.Services.Audio
 
         private void _outputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
         {
-            if (!HasUserInterrupted)
+            if (!IsUserInterrupted)
             {
                 List<string> tracks = DirectoryHelper.Tracklist;
                 int index = tracks.IndexOf(CurrentTrack);
@@ -46,7 +46,7 @@ namespace Claire_Musicplayer.Services.Audio
         {
             if (CurrentState != PlaybackState.Stopped)
             {
-                HasUserInterrupted = true; // Obviously user interrupted during playback
+                IsUserInterrupted = true; // Obviously user interrupted during playback
                 if (!_forgedFileReader.IsDisposed)
                     _forgedFileReader.Dispose();
                 _outputDevice.Stop();
@@ -64,7 +64,7 @@ namespace Claire_Musicplayer.Services.Audio
                 {
                     if (!_forgedFileReader.IsDisposed)
                     {
-                        HasUserInterrupted = false;
+                        IsUserInterrupted = false;
                         _outputDevice.Play();
                     }
                 }
@@ -82,7 +82,7 @@ namespace Claire_Musicplayer.Services.Audio
         {
             if(CurrentState != PlaybackState.Stopped)
             {
-                HasUserInterrupted = true;
+                IsUserInterrupted = true;
                 _outputDevice.Stop();
                 if (!_forgedFileReader.IsDisposed)
                     _forgedFileReader.Dispose();

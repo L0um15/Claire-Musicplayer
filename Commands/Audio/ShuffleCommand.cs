@@ -14,17 +14,15 @@ namespace Claire_Musicplayer.Commands.Audio
             if(DirectoryHelper.Tracklist != null)
             {
                 // Shuffles playlist using Fisher-Yates Algorithm
-                List<string> arr = new List<string>(DirectoryHelper.Tracklist);
-
+                List<string> arr = DirectoryHelper.Tracklist;
+                var random = new Random();
                 for(int i = arr.Count - 1; i > 0; i--)
                 {
-                    int rand = new Random().Next(i);
+                    int rand = random.Next(i);
                     string temp = arr[i];
                     arr[i] = arr[rand];
                     arr[rand] = temp;
                 }
-                DirectoryHelper.Tracklist.Clear();
-                DirectoryHelper.Tracklist.AddRange(arr);
                 MessageExtensions.WriteLine("Shuffled Tracklist!");
             }
 

@@ -10,7 +10,7 @@ namespace Claire_Musicplayer
     public static class Utilities
     {
 
-        public static string[] AllowedMediaExtensions = {
+        public readonly static string[] AllowedMediaExtensions = {
             ".mp3", ".m4a", ".wav",
             ".aiff", ".alac", ".flac",
             ".midi", ".ogg"
@@ -54,6 +54,17 @@ namespace Claire_Musicplayer
             return trackInfo;
         }
 
+        public static bool Contains(ReadOnlySpan<string> span, string str, StringComparison comparison)
+        {
+            foreach (var s in span)
+            {
+                if(s.Equals(str, comparison))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public static bool ContainsAll(this string str, ReadOnlySpan<string> words)
         {

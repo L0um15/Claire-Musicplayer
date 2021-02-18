@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace Claire_Musicplayer.Services
@@ -45,14 +44,14 @@ namespace Claire_Musicplayer.Services
         {
             Tracklist.Clear();
             string[] allFiles = Directory.GetFiles(CurrentDirectory, "*", SearchOption.TopDirectoryOnly);
+            var span = Utilities.AllowedMediaExtensions.AsSpan();
             for (int i = 0; i < allFiles.Length; i++)
             {
-                if (Utilities.AllowedMediaExtensions.Contains(Path.GetExtension(allFiles[i]).ToLower()))
+                if (Utilities.Contains(span,Path.GetExtension(allFiles[i]), StringComparison.InvariantCultureIgnoreCase))
                 {
                     Tracklist.Add(allFiles[i]);
                 }
             }
         }
-
     }
 }
