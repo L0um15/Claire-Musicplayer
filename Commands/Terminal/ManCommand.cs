@@ -14,18 +14,18 @@ namespace Claire_Musicplayer.Commands.Terminal
 
             if (CommandHandler.commands.TryGetValue(args[0], out ICommander command))
             {
-                string[] man = command.GetMan();
+                string[] man = command.GetManual();
                 for(int i = 0; i < man.Length; i++)
                     MessageExtensions.WriteLine(man[i]);
             }
             else
             {
-                MessageExtensions.WriteLine("Man for this command does not exist.");
+                MessageExtensions.WriteLine("Manual for this command does not exist.");
             }
 
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

@@ -51,7 +51,7 @@ namespace Claire_Musicplayer.Commands.Movement
             }   
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

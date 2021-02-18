@@ -30,7 +30,7 @@ namespace Claire_Musicplayer.Commands.Audio
 
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

@@ -21,7 +21,7 @@ namespace Claire_Musicplayer.Commands.Terminal
             Environment.Exit(0);
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

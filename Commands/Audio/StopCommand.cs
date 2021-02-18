@@ -22,7 +22,7 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine("Stopped!");
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

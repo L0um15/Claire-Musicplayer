@@ -12,7 +12,7 @@ namespace Claire_Musicplayer.Commands.Terminal
             MessageExtensions.Clear();
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

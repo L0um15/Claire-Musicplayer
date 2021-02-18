@@ -20,7 +20,7 @@ namespace Claire_Musicplayer.Commands.Movement
                 DirectoryHelper.RefreshTracklist();
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

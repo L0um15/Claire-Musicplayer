@@ -52,7 +52,7 @@ namespace Claire_Musicplayer.Commands.Terminal
 
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",

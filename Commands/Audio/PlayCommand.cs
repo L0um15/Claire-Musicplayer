@@ -47,7 +47,7 @@ namespace Claire_Musicplayer.Commands.Audio
                 MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
         }
 
-        public string[] GetMan()
+        public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",
@@ -55,8 +55,8 @@ namespace Claire_Musicplayer.Commands.Audio
                 $"Usage: {GetName()} bury the light",
                 "Description: Initializes playback for given input",
                 "Move to track dir by using 'cd' command",
-                "Partial match is supported: b he lig",
-                "However type-o is not."
+                "Partial matching is supported: 'b he lig'",
+                "However typos are not."
             };
         }
 
