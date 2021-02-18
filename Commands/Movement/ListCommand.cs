@@ -51,6 +51,11 @@ namespace Claire_Musicplayer.Commands.Movement
             }   
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Help()
         {
             return "Shows Directory structure";

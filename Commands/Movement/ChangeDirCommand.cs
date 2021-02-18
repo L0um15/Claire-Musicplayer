@@ -20,6 +20,11 @@ namespace Claire_Musicplayer.Commands.Movement
                 DirectoryHelper.RefreshTracklist();
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Help()
         {
             return "Changes Directory";

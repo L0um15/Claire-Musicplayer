@@ -22,6 +22,11 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine("Paused!");
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Help()
         {
             return "Pauses Playback";

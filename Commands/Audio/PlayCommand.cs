@@ -47,6 +47,11 @@ namespace Claire_Musicplayer.Commands.Audio
                 MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Help()
         {
             return "Starts Playback";

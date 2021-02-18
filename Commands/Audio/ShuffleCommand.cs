@@ -30,6 +30,11 @@ namespace Claire_Musicplayer.Commands.Audio
 
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetName()
         {
             return "shuffle";

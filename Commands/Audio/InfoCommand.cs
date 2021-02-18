@@ -64,6 +64,11 @@ namespace Claire_Musicplayer.Commands.Audio
             MessageExtensions.WriteLine($"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Help()
         {
             return "Displays Track information";

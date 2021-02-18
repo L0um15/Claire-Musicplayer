@@ -4,6 +4,7 @@ namespace Claire_Musicplayer.Interfaces
 {
     public interface ICommander
     {
+        public string[] GetMan();
         public string Help();
         public string GetName();
         public void Execute(ReadOnlySpan<string> args);

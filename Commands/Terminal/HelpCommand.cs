@@ -52,6 +52,11 @@ namespace Claire_Musicplayer.Commands.Terminal
 
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetName()
         {
             return "help";

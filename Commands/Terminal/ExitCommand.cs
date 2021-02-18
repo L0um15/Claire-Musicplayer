@@ -21,6 +21,11 @@ namespace Claire_Musicplayer.Commands.Terminal
             Environment.Exit(0);
         }
 
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetName()
         {
             return "exit";

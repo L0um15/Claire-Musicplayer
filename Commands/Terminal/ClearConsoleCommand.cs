@@ -21,5 +21,10 @@ namespace Claire_Musicplayer.Commands.Terminal
         {
             return "clear";
         }
+
+        public string[] GetMan()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
