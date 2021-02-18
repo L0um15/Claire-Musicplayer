@@ -38,7 +38,10 @@ namespace Claire_Musicplayer.Services
             return false;
         }
 
-        public static void PrepareTracklist()
+        /// <summary>
+        /// Clears and updates Tracklist
+        /// </summary>
+        public static void RefreshTracklist()
         {
             Tracklist.Clear();
             string[] allFiles = Directory.GetFiles(CurrentDirectory, "*", SearchOption.TopDirectoryOnly);

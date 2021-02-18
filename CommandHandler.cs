@@ -23,6 +23,7 @@ namespace Claire_Musicplayer
             AddCommand(new VolumeCommand(audioHandler));
             AddCommand(new InfoCommand(audioHandler));
             AddCommand(new LyricsCommand(audioHandler));
+            AddCommand(new ShuffleCommand());
             #endregion
 
             #region MovementCommands

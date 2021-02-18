@@ -12,9 +12,7 @@ namespace Claire_Musicplayer
             AudioManager audioHandler = new AudioManager();
             CommandHandler commandHandler = new CommandHandler(audioHandler);
 
-
-            // This should be only used during startup and cd command 
-            DirectoryHelper.PrepareTracklist();
+            DirectoryHelper.RefreshTracklist();
 
             MessageExtensions.WriteLine($"Claire Musicplayer v{Utilities.GetVersion()}");
             MessageExtensions.WriteLine($"Looking for updates");
