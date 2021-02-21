@@ -27,6 +27,8 @@ If you want to contribute, here are some things you need to know before commitin
 **Linux build is not available until next release**<br />
 *Stay tuned!*
 
+**Gallery**<br />
+*This applies only to latest commit, however difference is minimal compared to released version*
 
 <img src=".github/images/preview1.png">
 

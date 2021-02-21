@@ -46,8 +46,6 @@ namespace Claire_Musicplayer.Commands.Audio
                     totalTimeSpan.Milliseconds
                 );
 
-            Console.Clear();
-
             string fullname;
             if (trackInfo.Artist == null || trackInfo.Title == null)
                 fullname = Path.GetFileNameWithoutExtension(_audioManager.CurrentTrack);
