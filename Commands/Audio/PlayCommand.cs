@@ -44,7 +44,7 @@ namespace Claire_Musicplayer.Commands.Audio
             }
 
             if(_audioManager.CurrentState == PlaybackState.Playing && matchFound)
-                MessageExtensions.WriteLine("Playing. Type \"info\" for details.");
+                Console.WriteLine("Playing. Type \"info\" for details.");
         }
 
         public string[] GetManual()

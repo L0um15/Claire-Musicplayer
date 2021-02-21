@@ -19,7 +19,7 @@ namespace Claire_Musicplayer.Commands.Audio
         public void Execute(ReadOnlySpan<string> args)
         {
             _audioManager.Stop();
-            MessageExtensions.WriteLine("Stopped!");
+            Console.WriteLine("Stopped!");
         }
 
         public string[] GetManual()

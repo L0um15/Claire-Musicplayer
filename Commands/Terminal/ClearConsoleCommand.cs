@@ -9,7 +9,7 @@ namespace Claire_Musicplayer.Commands.Terminal
     {
         public void Execute(ReadOnlySpan<string> args)
         {
-            MessageExtensions.Clear();
+            Console.Clear();
         }
 
         public string[] GetManual()

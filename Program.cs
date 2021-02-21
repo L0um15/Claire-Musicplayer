@@ -8,23 +8,21 @@ namespace Claire_Musicplayer
     {
         public static void Main(string[] args)
         {
-            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
             AudioManager audioHandler = new AudioManager();
             CommandHandler commandHandler = new CommandHandler(audioHandler);
 
             DirectoryHelper.RefreshTracklist();
 
-            MessageExtensions.WriteLine($"Claire Musicplayer v{Utilities.GetVersion()}");
-            MessageExtensions.WriteLine($"Looking for updates");
+            Console.WriteLine($"Claire Musicplayer v{Utilities.GetVersion()}");
+            Console.WriteLine($"Looking for updates");
 
             if(Utilities.GetLatestVersion() != null)
-                MessageExtensions.WriteLine($"Claire got an update! v{Utilities.GetLatestVersion()}");
+                Console.WriteLine($"Claire got an update! v{Utilities.GetLatestVersion()}");
 
-            MessageExtensions.WriteLine("I am ready");
+            Console.WriteLine("I am ready");
             while (true)
             {
                 string input = MessageExtensions.ReadLine();
-                MessageExtensions.Flush();
                 commandHandler.Parse(input);
             }
         }

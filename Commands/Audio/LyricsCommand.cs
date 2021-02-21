@@ -20,7 +20,7 @@ namespace Claire_Musicplayer.Commands.Audio
 
             if (_audioManager.CurrentTrack == null)
             {
-                MessageExtensions.WriteLine("Currently nothing is playing.");
+                Console.WriteLine("Currently nothing is playing.");
                 return;
             }
 
@@ -34,13 +34,13 @@ namespace Claire_Musicplayer.Commands.Audio
 
             if(mergedLyrics == null)
             {
-                MessageExtensions.WriteLine("Sorry, this track does not contains any lyrics");
+                Console.WriteLine("Sorry, this track does not contains any lyrics");
                 return;
             }
 
             string[] lyrics = mergedLyrics.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
 
-            Paginator<string> paginator = new Paginator<string>(lyrics, Console.BufferHeight - 4);
+            Paginator<string> paginator = new Paginator<string>(lyrics, System.Console.BufferHeight - 4);
 
             if (paginator.IsValidPage(pageNum))
             {
@@ -48,12 +48,12 @@ namespace Claire_Musicplayer.Commands.Audio
 
                 for(int i = 0; i < page.Span.Length; i++)
                 {
-                    MessageExtensions.WriteLine("   " + page.Span[i]);
+                    Console.WriteLine("   " + page.Span[i]);
                 }
-                MessageExtensions.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
+                Console.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
             }
             else
-                MessageExtensions.WriteLine("Page was out of range");
+                Console.WriteLine("Page was out of range");
 
 
         }

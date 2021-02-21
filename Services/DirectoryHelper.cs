@@ -8,7 +8,11 @@ namespace Claire_Musicplayer.Services
     public static class DirectoryHelper
     {
         public static string CurrentDirectory { get; private set; } = Directory.GetCurrentDirectory();
+        public static string MusicDirectory { get => Environment.GetFolderPath(Environment.SpecialFolder.MyMusic); }
+        public static string UserDirectory { get => Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); }
+
         public readonly static List<string> Tracklist = new List<string>();
+
         /// <summary>
         /// Will attempt to change directory and handle DirectoryNotFoundException
         /// </summary>
@@ -32,7 +36,7 @@ namespace Claire_Musicplayer.Services
             }
             catch (DirectoryNotFoundException)
             {
-                MessageExtensions.WriteLine($"Directory: \"{path}\" not found");
+                Console.WriteLine($"Directory: \"{path}\" not found");
             }
             return false;
         }

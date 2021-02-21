@@ -21,7 +21,7 @@ namespace Claire_Musicplayer.Commands.Audio
             
             if(args.Length == 0)
             {
-                MessageExtensions.WriteLine($"Current Volume: {_audioManager.Volume}%");
+                Console.WriteLine($"Current Volume: {_audioManager.Volume}%");
                 return;
             }
 
@@ -32,14 +32,14 @@ namespace Claire_Musicplayer.Commands.Audio
                     if (value >= 0 && value <= 100)
                     {
                         _audioManager.Volume = value;
-                        MessageExtensions.WriteLine($"Volume changed to: {value}%");
+                        Console.WriteLine($"Volume changed to: {value}%");
                     }
                     else
-                        MessageExtensions.WriteLine("Allowed range: 0-100%");
+                        Console.WriteLine("Allowed range: 0-100%");
                     
                 }
                 else
-                    MessageExtensions.WriteLine("Volume must be an integer");
+                    Console.WriteLine("Volume must be an integer");
             }
 
         }

@@ -16,11 +16,11 @@ namespace Claire_Musicplayer.Commands.Terminal
             {
                 string[] man = command.GetManual();
                 for(int i = 0; i < man.Length; i++)
-                    MessageExtensions.WriteLine(man[i]);
+                    Console.WriteLine(man[i]);
             }
             else
             {
-                MessageExtensions.WriteLine("Manual for this command does not exist.");
+                Console.WriteLine("Manual for this command does not exist.");
             }
 
         }

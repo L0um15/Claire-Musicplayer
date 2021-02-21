@@ -22,7 +22,7 @@ namespace Claire_Musicplayer.Commands.Audio
         {
             if(_audioManager.CurrentTrack == null)
             {
-                MessageExtensions.WriteLine("Currently nothing is playing.");
+                Console.WriteLine("Currently nothing is playing.");
                 return;
             }
 
@@ -46,7 +46,7 @@ namespace Claire_Musicplayer.Commands.Audio
                     totalTimeSpan.Milliseconds
                 );
 
-            MessageExtensions.Clear();
+            Console.Clear();
 
             string fullname;
             if (trackInfo.Artist == null || trackInfo.Title == null)
@@ -54,14 +54,14 @@ namespace Claire_Musicplayer.Commands.Audio
             else
                 fullname = $"{trackInfo.Artist} - {trackInfo.Title}";
 
-            MessageExtensions.WriteLine($"Track: {fullname}");
-            MessageExtensions.WriteLine($"Album: {trackInfo.Album}");
-            MessageExtensions.WriteLine($"Genres: {trackInfo.Genres}");
-            MessageExtensions.WriteLine($"Copyright: {trackInfo.Copyright}");
-            MessageExtensions.WriteLine($"Year: {trackInfo.Year}");
-            MessageExtensions.WriteLine($"Track Number: {trackInfo.TrackNumber}");
-            MessageExtensions.WriteLine($"Disc Number: {trackInfo.DiskNumber}");
-            MessageExtensions.WriteLine($"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
+            Console.WriteLine($"Track: {fullname}");
+            Console.WriteLine($"Album: {trackInfo.Album}");
+            Console.WriteLine($"Genres: {trackInfo.Genres}");
+            Console.WriteLine($"Copyright: {trackInfo.Copyright}");
+            Console.WriteLine($"Year: {trackInfo.Year}");
+            Console.WriteLine($"Track Number: {trackInfo.TrackNumber}");
+            Console.WriteLine($"Disc Number: {trackInfo.DiskNumber}");
+            Console.WriteLine($"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
         }
 
         public string[] GetManual()

@@ -49,7 +49,7 @@ namespace Claire_Musicplayer
         {
             if (string.IsNullOrEmpty(input))
             {
-                MessageExtensions.WriteLine("Nothing passed.");
+                Console.WriteLine("Nothing passed.");
                 return;
             }
             string[] args = input.Split(' ');
@@ -58,7 +58,7 @@ namespace Claire_Musicplayer
             if (commands.ContainsKey(command))
                 commands[command].Execute(span);
             else
-                MessageExtensions.WriteLine("Invalid Command, Try Again.");
+                Console.WriteLine("Invalid Command, Try Again.");
         }
     }
 }

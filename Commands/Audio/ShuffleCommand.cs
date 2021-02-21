@@ -23,7 +23,7 @@ namespace Claire_Musicplayer.Commands.Audio
                     arr[i] = arr[rand];
                     arr[rand] = temp;
                 }
-                MessageExtensions.WriteLine("Shuffled Tracklist!");
+                Console.WriteLine("Shuffled Tracklist!");
             }
 
         }

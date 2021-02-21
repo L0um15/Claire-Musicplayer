@@ -18,7 +18,7 @@ namespace Claire_Musicplayer.Commands.Terminal
                 }
                 else
                 {
-                    MessageExtensions.WriteLine("Help page requires an integer as argument");
+                    Console.WriteLine("Help page requires an integer as argument");
                     return;
                 }
             }
@@ -33,11 +33,11 @@ namespace Claire_Musicplayer.Commands.Terminal
                 i++;
             }
 
-            Paginator<string> paginator = new Paginator<string>(helpPage, Console.BufferHeight - 4);
+            Paginator<string> paginator = new Paginator<string>(helpPage, System.Console.BufferHeight - 4);
 
             if (!paginator.IsValidPage(pageNum))
             {
-                MessageExtensions.WriteLine("Page was out of range");
+                Console.WriteLine("Page was out of range");
                 return;
             }
 
@@ -45,11 +45,9 @@ namespace Claire_Musicplayer.Commands.Terminal
 
             for (int j = 0; j < page.Span.Length; j++)
             {
-                MessageExtensions.WriteLine(helpPage[j]);
+                Console.WriteLine(helpPage[j]);
             }
-            MessageExtensions.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
-
-
+            Console.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
         }
 
         public string[] GetManual()

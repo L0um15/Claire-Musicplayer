@@ -21,11 +21,11 @@ namespace Claire_Musicplayer.Commands.Movement
                     .Where(e => !File.GetAttributes(e).HasFlag(FileAttributes.Hidden))
                     .OrderBy(e=> !File.GetAttributes(e).HasFlag(FileAttributes.Directory)).ToArray();
 
-                Paginator<string> paginator = new Paginator<string>(entries, Console.BufferHeight - 4);
+                Paginator<string> paginator = new Paginator<string>(entries, System.Console.BufferHeight - 4);
 
                 if (!paginator.IsValidPage(value))
                 {
-                    MessageExtensions.WriteLine("Page was out of range");
+                    Console.WriteLine("Page was out of range");
                     return;
                 }
 
@@ -36,18 +36,18 @@ namespace Claire_Musicplayer.Commands.Movement
                     FileAttributes attr = File.GetAttributes(page.Span[i]);
                     if(attr == FileAttributes.Directory)
                     {
-                        MessageExtensions.WriteLine($"<DIR> {Path.GetFileName(page.Span[i])}");
+                        Console.WriteLine($"<DIR> {Path.GetFileName(page.Span[i])}");
                     }
                     else
                     {
-                        MessageExtensions.WriteLine($"      {Path.GetFileName(page.Span[i])}");
+                        Console.WriteLine($"      {Path.GetFileName(page.Span[i])}");
                     }
                 }
-                MessageExtensions.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
+                Console.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
             }
             else
             {
-                MessageExtensions.WriteLine("Accepts only integer!");
+                Console.WriteLine("Accepts only integer!");
             }   
         }
 
