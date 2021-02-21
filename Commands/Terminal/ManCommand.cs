@@ -16,16 +16,13 @@ namespace Claire_Musicplayer.Commands.Terminal
             if (CommandHandler.commands.TryGetValue(args[0], out ICommander command))
             {
                 string[] man = command.GetManual();
-                Console.WriteLine("┌[".Pastel("#F568CE") +"ManPage"+"]".Pastel("#F568CE"));
                 for(int i = 0; i < man.Length; i++)
-                    Console.WriteLine("│ ".Pastel("#F568CE") + man[i]);
-                Console.WriteLine("└[".Pastel("#F568CE") +"EndPage"+"]".Pastel("#F568CE"));
+                    Console.WriteLine("  " + man[i]);
             }
             else
             {
                 Console.WriteLine("Manual for this command does not exist.");
             }
-
         }
 
         public string[] GetManual()
