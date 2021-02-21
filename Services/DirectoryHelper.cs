@@ -21,6 +21,9 @@ namespace Claire_Musicplayer.Services
         {
             try
             {
+                if (path.Contains('~'))
+                    path = path.Replace("~", UserProfile);
+
                 if (Path.IsPathRooted(path))
                 {
                     Directory.SetCurrentDirectory(path);
