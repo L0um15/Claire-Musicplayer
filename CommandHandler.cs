@@ -12,7 +12,7 @@ namespace Claire_Musicplayer
 {
     public class CommandHandler
     {
-        public static readonly Dictionary<string, ICommander> commands = new Dictionary<string, ICommander>();
+        public static readonly Dictionary<string, ICommander> commands = new Dictionary<string, ICommander>(StringComparer.InvariantCultureIgnoreCase);
 
         public CommandHandler(AudioManager audioHandler)
         {
