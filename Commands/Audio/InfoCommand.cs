@@ -54,14 +54,14 @@ namespace Claire_Musicplayer.Commands.Audio
             else
                 fullname = $"{trackInfo.Artist} - {trackInfo.Title}";
 
-            Console.WriteLine($"Track: {fullname}");
-            Console.WriteLine($"Album: {trackInfo.Album}");
-            Console.WriteLine($"Genres: {trackInfo.Genres}");
-            Console.WriteLine($"Copyright: {trackInfo.Copyright}");
-            Console.WriteLine($"Year: {trackInfo.Year}");
-            Console.WriteLine($"Track Number: {trackInfo.TrackNumber}");
-            Console.WriteLine($"Disc Number: {trackInfo.DiskNumber}");
-            Console.WriteLine($"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
+            Console.WriteLine($"Track: {fullname}\n" +
+                $"Album: {trackInfo.Album}\n" +
+                $"Genres: {trackInfo.Genres}\n" +
+                $"Copyright: {trackInfo.Copyright}\n" +
+                $"Year: {trackInfo.Year}\n" +
+                $"Track Number: {trackInfo.TrackNumber}\n" +
+                $"Disc Number: {trackInfo.DiskNumber}\n" +
+                $"Pos/Dur: {currentTimeFormat} / {totalTimeFormat}");
         }
 
         public string[] GetManual()

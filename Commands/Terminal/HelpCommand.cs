@@ -1,4 +1,5 @@
 ﻿using Claire_Musicplayer.Interfaces;
+using Pastel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,19 +10,6 @@ namespace Claire_Musicplayer.Commands.Terminal
     {
         public void Execute(ReadOnlySpan<string> args)
         {
-            int pageNum = 1;
-            if (args.Length > 0)
-            {
-                if (int.TryParse(args[0], out int value))
-                {
-                    pageNum = value;
-                }
-                else
-                {
-                    Console.WriteLine("Help page requires an integer as argument");
-                    return;
-                }
-            }
 
             string[] helpPage = new string[CommandHandler.commands.Count];
             
@@ -32,33 +20,20 @@ namespace Claire_Musicplayer.Commands.Terminal
                 helpPage[i] = $"{keyValuePair.Key} - {keyValuePair.Value.Help()}";
                 i++;
             }
-
-            Paginator<string> paginator = new Paginator<string>(helpPage, System.Console.BufferHeight - 4);
-
-            if (!paginator.IsValidPage(pageNum))
-            {
-                Console.WriteLine("Page was out of range");
-                return;
-            }
-
-            var page = paginator.GetPage(pageNum);
-
-            for (int j = 0; j < page.Span.Length; j++)
-            {
-                Console.WriteLine(helpPage[j]);
-            }
-            Console.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
+            Console.WriteLine("┌[".Pastel("#F568CE") + "HelpPage" + "]".Pastel("#F568CE"));
+            for (int j = 0; j < helpPage.Length; j++)
+                Console.WriteLine("│ ".Pastel("#F568CE") + helpPage[j]);
+            Console.WriteLine("└[".Pastel("#F568CE") + "EndHelp" + "]".Pastel("#F568CE"));
+            
         }
 
         public string[] GetManual()
         {
             return new string[] {
                 $"{GetName()} - {Help()}",
-                "Needs: <integer>",
-                $"Usage: {GetName()} 2",
-                "Description: This command is using paginator.",
-                "To move between pages you need to specify integer from 1 to (N)",
-                "Displays every loaded command."
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Displays every loaded command."
             };
         }
 

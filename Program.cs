@@ -13,13 +13,6 @@ namespace Claire_Musicplayer
 
             DirectoryHelper.RefreshTracklist();
 
-            Console.WriteLine($"Claire Musicplayer v{Utilities.GetVersion()}");
-            Console.WriteLine($"Looking for updates");
-
-            if(Utilities.GetLatestVersion() != null)
-                Console.WriteLine($"Claire got an update! v{Utilities.GetLatestVersion()}");
-
-            Console.WriteLine("I am ready");
             while (true)
             {
                 string input = MessageExtensions.ReadLine();

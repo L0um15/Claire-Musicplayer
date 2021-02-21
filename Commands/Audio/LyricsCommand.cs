@@ -24,37 +24,15 @@ namespace Claire_Musicplayer.Commands.Audio
                 return;
             }
 
-            int pageNum = 1;
-            if (args.Length == 1)
-                if (args[0] != string.Empty)
-                    if (int.TryParse(args[0], out int value))
-                        pageNum = value;
+            string lyrics = Utilities.GetTrackInfo(_audioManager.CurrentTrack).Lyrics;
 
-            string mergedLyrics = Utilities.GetTrackInfo(_audioManager.CurrentTrack).Lyrics;
-
-            if(mergedLyrics == null)
+            if(lyrics == null)
             {
                 Console.WriteLine("Sorry, this track does not contains any lyrics");
                 return;
             }
 
-            string[] lyrics = mergedLyrics.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
-
-            Paginator<string> paginator = new Paginator<string>(lyrics, System.Console.BufferHeight - 4);
-
-            if (paginator.IsValidPage(pageNum))
-            {
-                Page<string> page = paginator.GetPage(pageNum);
-
-                for(int i = 0; i < page.Span.Length; i++)
-                {
-                    Console.WriteLine("   " + page.Span[i]);
-                }
-                Console.WriteLine($"PAGE  {page.PageNumber} of {paginator.PageCount}");
-            }
-            else
-                Console.WriteLine("Page was out of range");
-
+            Console.WriteLine(lyrics);
 
         }
 
@@ -62,11 +40,9 @@ namespace Claire_Musicplayer.Commands.Audio
         {
             return new string[] {
                 $"{GetName()} - {Help()}",
-                "Needs: <integer>",
-                $"Usage: {GetName()} 2",
-                "Description: This command is using paginator.",
-                "To move between pages you need to specify integer from 1 to (N)",
-                "Attempts to get encoded lyrics from track meta"
+                "Needs: Nothing",
+                $"Usage: {GetName()}",
+                "Description: Attempts to get encoded lyrics from track meta"
             };
         }
 
