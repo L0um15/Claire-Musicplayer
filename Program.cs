@@ -1,5 +1,6 @@
 ﻿using Claire_Musicplayer.Services;
 using Claire_Musicplayer.Services.Audio;
+using Pastel;
 using System;
 
 namespace Claire_Musicplayer
@@ -10,8 +11,12 @@ namespace Claire_Musicplayer
         {
             AudioManager audioHandler = new AudioManager();
             CommandHandler commandHandler = new CommandHandler(audioHandler);
-
             DirectoryHelper.RefreshTracklist();
+
+            string latestversion = Utilities.GetLatestVersion();
+
+            if (latestversion != null)
+                Console.WriteLine($"CLAIRE IS OUTDATED! Newest: {latestversion}".Pastel("#F5BE47"));
 
             while (true)
             {
