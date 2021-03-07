@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿using ManagedBass;
+using ManagedBass.Wasapi;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,101 +9,99 @@ namespace Claire_Musicplayer.Services.Audio
     public class AudioManager : IDisposable
     {
 
-        private readonly WaveOutEvent _outputDevice;
-        private ForgedFileReader _forgedFileReader;
-
-        public PlaybackState CurrentState => _outputDevice.PlaybackState;
-        public bool IsUserInterrupted { get; set; }
+        private int _stream;
+        private bool WasapiInitialized;
+        public PlaybackState CurrentState => Bass.ChannelIsActive(_stream);
         public string CurrentTrack { get; private set; }
         public int Volume
         {
-            get => (int)MathF.Round(_outputDevice.Volume * 100);
-            set { _outputDevice.Volume = (float)value / 100; }
+            get
+            {
+                if (WasapiInitialized)
+                    return (int)MathF.Round(BassWasapi.GetVolume(WasapiVolumeTypes.Session) * 100);
+                else
+                    return (int)Math.Round(Bass.Volume * 100);
+            }
+            set
+            {
+                if (WasapiInitialized)
+                    BassWasapi.SetVolume(WasapiVolumeTypes.Session, (float) value / 100);
+                else
+                    Bass.Volume = (double) value / 100;
+            }
         }
 
         public AudioManager()
         {
-            _outputDevice = new WaveOutEvent();
-            _outputDevice.PlaybackStopped += _outputDevice_PlaybackStopped;
-        }
+            if (!Bass.Init(Bass.DefaultDevice))
+                throw new BassException();
 
-        private void _outputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
-        {
-            if (!IsUserInterrupted)
-            {
-                List<string> tracks = DirectoryHelper.Tracklist;
-                int index = tracks.IndexOf(CurrentTrack);
-                index++;
-                if (index < tracks.Count)
-                {
-                    CurrentTrack = tracks[index];
-                    Load(CurrentTrack);
-                    Play();
-                }
-            }
+            if (!Utilities.IsLinux)
+                if (BassWasapi.Init(BassWasapi.DefaultDevice))
+                    WasapiInitialized = true;
         }
 
         public void Load(string input)
         {
-            if (CurrentState != PlaybackState.Stopped)
-            {
-                IsUserInterrupted = true; // Obviously user interrupted during playback
-                if (!_forgedFileReader.IsDisposed)
-                    _forgedFileReader.Dispose();
-                _outputDevice.Stop();
-            }
-            _forgedFileReader = new ForgedFileReader(input);
-            _outputDevice.Init(_forgedFileReader);
+            if(CurrentState != PlaybackState.Stopped)
+                Stop();
+            _stream = Bass.CreateStream(input); // assign handle to local integer
+            Bass.ChannelSetSync(_stream, SyncFlags.End, 0, new SyncProcedure(PlaybackEnded));
             CurrentTrack = input;
+        }
+
+        private void PlaybackEnded(int Handle, int Channel, int Data, IntPtr User)
+        {
+            // TODO: Do something here...
+            List<string> tracks = DirectoryHelper.Tracklist;
+            int index = tracks.IndexOf(CurrentTrack);
+            index++;
+            if(index < tracks.Count)
+            {
+                CurrentTrack = tracks[index];
+                Load(tracks[index]);
+                Play();
+            }
         }
 
         public void Play()
         {
-            if (CurrentState != PlaybackState.Playing)
+            if(CurrentState != PlaybackState.Playing)
+                Bass.ChannelPlay(_stream); // Start playback
+        }
+        
+        public void Stop()
+        {
+            if(CurrentState != PlaybackState.Stopped)
             {
-                if (_forgedFileReader != null)
-                {
-                    if (!_forgedFileReader.IsDisposed)
-                    {
-                        IsUserInterrupted = false;
-                        _outputDevice.Play();
-                    }
-                }
+                Bass.ChannelStop(_stream); // Results in channel being freed and automatically removes SyncProcedure (PlaybackEnded)
+                Bass.StreamFree(_stream);
+                CurrentTrack = null;
             }
-                
         }
 
         public void Pause()
         {
             if(CurrentState == PlaybackState.Playing)
-                _outputDevice.Pause();
-        }
-
-        public void Stop()
-        {
-            if(CurrentState != PlaybackState.Stopped)
-            {
-                IsUserInterrupted = true;
-                _outputDevice.Stop();
-                if (!_forgedFileReader.IsDisposed)
-                    _forgedFileReader.Dispose();
-                CurrentTrack = null;
-            }
+                Bass.ChannelPause(_stream);
         }
 
         public TimeSpan GetPositionAsTimeSpan()
         {
-            return _forgedFileReader.Position;
+            return TimeSpan.FromSeconds(Bass.ChannelBytes2Seconds(_stream, Bass.ChannelGetPosition(_stream)));
         }
 
         public TimeSpan GetDurationAsTimeSpan()
         {
-            return _forgedFileReader.Duration;
+            return TimeSpan.FromSeconds(Bass.ChannelBytes2Seconds(_stream, Bass.ChannelGetLength(_stream)));
         }
+
+
 
         public void Dispose()
         {
-            _outputDevice.Dispose();
+            Bass.Free();
+            BassWasapi.Free();
         }
     }
 }

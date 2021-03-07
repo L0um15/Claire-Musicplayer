@@ -1,7 +1,7 @@
 ﻿using Claire_Musicplayer.Interfaces;
 using Claire_Musicplayer.Services;
 using Claire_Musicplayer.Services.Audio;
-using NAudio.Wave;
+using ManagedBass;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +29,7 @@ namespace Claire_Musicplayer.Commands.Audio
             if (args[0] == string.Empty)
                 return;
 
-            List<string> tracks = Directory.GetFiles(DirectoryHelper.CurrentDirectory, "*", SearchOption.TopDirectoryOnly).ToList();
+            List<string> tracks = DirectoryHelper.Tracklist;
 
             bool matchFound = false;
             foreach(string item in tracks)

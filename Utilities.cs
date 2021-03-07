@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Claire_Musicplayer
@@ -12,9 +13,10 @@ namespace Claire_Musicplayer
 
         public readonly static string[] AllowedMediaExtensions = {
             ".mp3", ".m4a", ".wav",
-            ".aiff", ".alac", ".flac",
-            ".midi", ".ogg"
+            ".aiff", ".ogg"
         };
+
+        public static bool IsLinux => RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
 
         public static string GetLatestVersion()
         {
