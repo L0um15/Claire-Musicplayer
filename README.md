@@ -18,14 +18,10 @@ meaning of which: no flags, complicated command syntaxes etc. *(Regex searching 
 
 If you want to contribute, here are some things you need to know before commiting changes:
  - *Any disk operations like overwriting files and file deletion are forbidden*
- - *Operations that require root permissions are forbidden as well (Linux builds / Security reasons)*
  - *Every command must be isolated. DO NOT execute other commands without user knowledge*
 
 
 **First alpha build is available now.**
-
-**Linux build is not available until next release**<br />
-*Stay tuned!*
 
 **Gallery**<br />
 *This applies only to latest commit, however difference is minimal compared to released version*
