@@ -15,4 +15,19 @@
     <PackageReference Include="taglib-sharp-netstandard2.0" Version="2.1.0" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="$(ProjectDir)/Libraries/bass.dll">
+			<Link>bass.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="$(ProjectDir)/Libraries/basswasapi.dll">
+			<Link>basswasapi.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="$(ProjectDir)/Libraries/libbass.so">
+			<Link>libbass.so</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
 </Project>

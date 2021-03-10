@@ -101,7 +101,8 @@ namespace Claire_Musicplayer.Services.Audio
         public void Dispose()
         {
             Bass.Free();
-            BassWasapi.Free();
+            if(WasapiInitialized)
+                BassWasapi.Free();
         }
     }
 }
