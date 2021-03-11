@@ -13,16 +13,13 @@
 
 *You can report issues at the issue tracker*
 
-*Linux support: Work in progress*
-
 Main goal for Claire is to mimic commandline behaviour as much beginner friendly as possible,
 meaning of which: no flags, complicated command syntaxes etc. *(Regex searching will be possible for experienced users and enabled by default)*<br/>
 
 If you want to contribute, here are some things you need to know before commiting changes:
  - *Any disk operations like overwriting files and file deletion are forbidden*
+ - *Any operations that will require root/administrator permissions are forbidden*
  - *Every command must be isolated. DO NOT execute other commands without user knowledge*
-
-**First alpha build is available now.**
 
 **Gallery**<br />
 *This applies only to latest commit, however difference is minimal compared to released version*
