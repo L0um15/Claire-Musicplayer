@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Services.Audio
+namespace Claire.Services.Audio
 {
     public class AudioManager : IDisposable
     {
@@ -12,7 +12,7 @@ namespace Claire_Musicplayer.Services.Audio
         private int _stream;
         private bool WasapiInitialized;
         public PlaybackState CurrentState => Bass.ChannelIsActive(_stream);
-        public string CurrentTrack { get; private set; }
+        public string CurrentTrack { get; private set; } // Always absolute path to file
         public int Volume
         {
             get
@@ -45,14 +45,13 @@ namespace Claire_Musicplayer.Services.Audio
         {
             if(CurrentState != PlaybackState.Stopped)
                 Stop();
-            _stream = Bass.CreateStream(input); // assign handle to local integer
+            _stream = Bass.CreateStream(input);
             Bass.ChannelSetSync(_stream, SyncFlags.End, 0, new SyncProcedure(PlaybackEnded));
             CurrentTrack = input;
         }
 
         private void PlaybackEnded(int Handle, int Channel, int Data, IntPtr User)
         {
-            // TODO: Do something here...
             List<string> tracks = DirectoryHelper.Tracklist;
             int index = tracks.IndexOf(CurrentTrack);
             index++;

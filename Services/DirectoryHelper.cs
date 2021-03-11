@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Claire_Musicplayer.Services
+namespace Claire.Services
 {
     public static class DirectoryHelper
     {

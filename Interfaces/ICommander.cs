@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Claire_Musicplayer.Interfaces
+namespace Claire.Interfaces
 {
     public interface ICommander
     {

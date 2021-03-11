@@ -1,12 +1,12 @@
-﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
+﻿using Claire.Interfaces;
+using Claire.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands.Movement
+namespace Claire.Commands.Movement
 {
     public class ChangeDirCommand : ICommander
     {

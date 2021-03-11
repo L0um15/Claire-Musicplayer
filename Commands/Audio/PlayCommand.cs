@@ -1,6 +1,6 @@
-﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
-using Claire_Musicplayer.Services.Audio;
+﻿using Claire.Interfaces;
+using Claire.Services;
+using Claire.Services.Audio;
 using ManagedBass;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands.Audio
+namespace Claire.Commands.Audio
 {
     public class PlayCommand : ICommander
     {

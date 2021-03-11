@@ -1,12 +1,12 @@
-﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Models;
-using Claire_Musicplayer.Services.Audio;
+﻿using Claire.Interfaces;
+using Claire.Models;
+using Claire.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands.Audio
+namespace Claire.Commands.Audio
 {
     public class InfoCommand : ICommander
     {

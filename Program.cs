@@ -1,9 +1,9 @@
-﻿using Claire_Musicplayer.Services;
-using Claire_Musicplayer.Services.Audio;
+﻿using Claire.Services;
+using Claire.Services.Audio;
 using Pastel;
 using System;
 
-namespace Claire_Musicplayer
+namespace Claire
 {
     public static class Program
     {

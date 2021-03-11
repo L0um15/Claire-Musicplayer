@@ -1,4 +1,4 @@
-﻿using Claire_Musicplayer.Services;
+﻿using Claire.Services;
 using Pastel;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Claire_Musicplayer
+namespace Claire
 {
     public static class MessageExtensions
     {

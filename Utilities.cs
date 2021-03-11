@@ -1,4 +1,4 @@
-﻿using Claire_Musicplayer.Models;
+﻿using Claire.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Claire_Musicplayer
+namespace Claire
 {
     public static class Utilities
     {

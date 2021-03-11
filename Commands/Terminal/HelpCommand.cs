@@ -1,9 +1,9 @@
-﻿using Claire_Musicplayer.Interfaces;
+﻿using Claire.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands.Terminal
+namespace Claire.Commands.Terminal
 {
     public class HelpCommand : ICommander
     {

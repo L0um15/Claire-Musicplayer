@@ -1,10 +1,10 @@
-﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services.Audio;
+﻿using Claire.Interfaces;
+using Claire.Services.Audio;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands.Terminal
+namespace Claire.Commands.Terminal
 {
     public class ExitCommand : ICommander
     {

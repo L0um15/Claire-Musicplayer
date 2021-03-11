@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Models
+namespace Claire.Models
 {
     public class TrackInfo
     {

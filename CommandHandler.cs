@@ -1,14 +1,14 @@
-﻿using Claire_Musicplayer.Commands.Audio;
-using Claire_Musicplayer.Commands.Terminal;
-using Claire_Musicplayer.Commands.Movement;
-using Claire_Musicplayer.Interfaces;
+﻿using Claire.Commands.Audio;
+using Claire.Commands.Terminal;
+using Claire.Commands.Movement;
+using Claire.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Claire_Musicplayer.Services.Audio;
+using Claire.Services.Audio;
 
-namespace Claire_Musicplayer
+namespace Claire
 {
     public class CommandHandler
     {

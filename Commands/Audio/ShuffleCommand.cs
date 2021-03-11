@@ -1,10 +1,10 @@
-﻿using Claire_Musicplayer.Interfaces;
-using Claire_Musicplayer.Services;
+﻿using Claire.Interfaces;
+using Claire.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Claire_Musicplayer.Commands.Audio
+namespace Claire.Commands.Audio
 {
     public class ShuffleCommand : ICommander
     {
