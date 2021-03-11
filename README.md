@@ -22,7 +22,7 @@ If you want to contribute, here are some things you need to know before commitin
  - *Every command must be isolated. DO NOT execute other commands without user knowledge*
 
 **Gallery**<br />
-*This applies only to latest commit, however difference is minimal compared to released version*
+*This applies only to latest release*
 
 <img src=".github/images/preview1.png">
 
