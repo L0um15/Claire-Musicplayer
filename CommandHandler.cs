@@ -20,6 +20,7 @@ namespace Claire
             AddCommand(new PlayCommand(audioHandler));
             AddCommand(new PauseCommand(audioHandler));
             AddCommand(new StopCommand(audioHandler));
+            AddCommand(new SkipCommand(audioHandler));
             AddCommand(new VolumeCommand(audioHandler));
             AddCommand(new InfoCommand(audioHandler));
             AddCommand(new LyricsCommand(audioHandler));
